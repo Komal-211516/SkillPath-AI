@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillPath AI - Smart Career Roadmap Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --ink: #0a0a0f;
+            --paper: #f5f3ee;
+            --accent: #ff4d00;
+            --accent2: #00c896;
+            --accent3: #4361ee;
+            --accent4: #8b5cf6;
+            --muted: #8a8780;
+            --card: #ffffff;
+            --gradient: linear-gradient(135deg, #ff4d00 0%, #ff6b35 100%);
+            --gradient2: linear-gradient(135deg, #00c896 0%, #00e5b8 100%);
+            --gradient3: linear-gradient(135deg, #4361ee 0%, #8b5cf6 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--paper);
+            color: var(--ink);
+            min-height: 100vh;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(255, 77, 0, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(255, 77, 0, 0.6); }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeInScale {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .animate-slide-up { animation: slideInUp 0.6s ease-out forwards; }
+        .animate-fade-scale { animation: fadeInScale 0.5s ease-out forwards; }
+
+        header {
+            background: var(--ink);
+            padding: 24px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span { 
+            color: var(--accent);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .tagline {
+            font-size: 0.85rem;
+            color: var(--muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero {
+            padding: 80px 48px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-label {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            margin-bottom: 24px;
+            border-radius: 2px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            max-width: 700px;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 500px;
+            line-height: 1.7;
+        }
+
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 48px 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1.5px solid #e5e2dc;
+            border-radius: 20px;
+            padding: 32px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 28px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e5e2dc;
+        }
+
+        .field { margin-bottom: 24px; }
+
+        label {
+            display: block;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: var(--ink);
+        }
+
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid #e5e2dc;
+            border-radius: 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            background: var(--paper);
+            color: var(--ink);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 77, 0, 0.1);
+        }
+
+        optgroup {
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        option {
+            padding: 8px;
+            font-size: 0.85rem;
+        }
+
+        .upload-zone {
+            border: 2px dashed #d0cdc7;
+            border-radius: 12px;
+            padding: 36px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--paper);
+        }
+
+        .upload-zone:hover {
+            border-color: var(--accent);
+            background: #fff8f5;
+            transform: scale(1.02);
+        }
+
+        .upload-zone.has-file {
+            border-color: var(--accent2);
+            background: #f0fdf9;
+        }
+
+        .upload-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .upload-zone:hover .upload-icon {
+            transform: translateY(-5px);
+        }
+
+        input[type="file"] { display: none; }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--ink);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .btn:hover { 
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background: var(--gradient3);
+        }
+        
+        .btn-primary:hover {
+            background: var(--gradient);
+        }
+
+        .error-msg {
+            background: #fff0ee;
+            border: 1px solid #ffccc7;
+            color: #c0392b;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            margin-top: 16px;
+            display: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 60px;
+            grid-column: 1 / -1;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #e5e2dc;
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        .results-panel {
+            grid-column: 1 / -1;
+            display: none;
+        }
+
+        .score-row {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            margin-bottom: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid #e5e2dc;
+            flex-wrap: wrap;
+        }
+
+        .score-block {
+            flex-shrink: 0;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .score-block:hover { transform: scale(1.05); }
+        .score-block .num { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; }
+        .score-block .lbl { font-size: 0.7rem; opacity: 0.85; text-transform: uppercase; }
+        .score-high { background: var(--gradient2); }
+        .score-mid { background: linear-gradient(135deg, #f39c12 0%, #f1c40f 100%); }
+        .score-low { background: var(--gradient); }
+
+        .score-msg h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .skills-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .skill-group h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .skill-group.have h4 { color: var(--accent2); }
+        .skill-group.need h4 { color: var(--accent); }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin: 4px;
+            transition: transform 0.2s ease;
+        }
+
+        .tag:hover { transform: translateY(-2px); }
+        .tag-have { background: #e8fdf5; color: #00825e; border: 1px solid #b3f0da; }
+        .tag-need { background: #fff0ee; color: #c0392b; border: 1px solid #ffccc7; }
+        .tag-tech { background: #e8f0fe; color: #4361ee; border: 1px solid #b3d4ff; }
+
+        .resource-link {
+            margin-left: 8px;
+            font-size: 0.7rem;
+            text-decoration: none;
+            background: var(--accent2);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0ede8;
+            transition: background 0.2s;
+            border-radius: 8px;
+        }
+
+        .step:hover { background: #faf9f7; padding-left: 8px; }
+        .step-n {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--accent);
+            width: 30px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .tech-icon {
+            background: #f0f0f5;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 20px 24px; }
+            .hero { padding: 48px 24px 40px; }
+            .main { padding: 0 24px 60px; }
+            .skills-row { grid-template-columns: 1fr; }
+            .score-row { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Skill<span>Path</span> AI</div>
+    <div class="tagline">Career Intelligence</div>
+</header>
+
+<div class="hero animate-slide-up">
+    <div class="hero-label">⚡ AI-Powered Career Assistant</div>
+    <h1>Understand your <em>Strengths.</em> <br>Build your path.</h1>
+    <p>Upload your resume, pick any job role, and instantly discover how ready you are — with personalized learning resources and a clear roadmap.</p>
+</div>
+
+<div class="main">
+
+    <!-- Resume Analysis Card -->
+    <div class="card animate-fade-scale">
+        <div class="card-title">📄 Resume Analysis</div>
+        <div class="field">
+            <label>🎯 Target Job Role</label>
+            <select id="jobRole">
+                <option value="">Select a role...</option>
+                
+                <optgroup label="🎨 Arts & Creative">
+                    <option value="content writer">✍️ Content Writer</option>
+                    <option value="copywriter">📝 Copywriter</option>
+                    <option value="social media manager">📱 Social Media Manager</option>
+                    <option value="journalist">📰 Journalist</option>
+                    <option value="public relations specialist">📢 PR Specialist</option>
+                    <option value="event coordinator">🎪 Event Coordinator</option>
+                    <option value="graphic designer">🎨 Graphic Designer</option>
+                    <option value="ui ux designer">✨ UI/UX Designer</option>
+                    <option value="video editor">🎬 Video Editor</option>
+                    <option value="photographer">📸 Photographer</option>
+                    <option value="illustrator">🖌️ Illustrator</option>
+                    <option value="motion graphics designer">🎞️ Motion Graphics Designer</option>
+                    <option value="web designer">🌐 Web Designer</option>
+                </optgroup>
+
+                <optgroup label="💰 Commerce & Business">
+                    <option value="business analyst">📊 Business Analyst</option>
+                    <option value="financial analyst">💰 Financial Analyst</option>
+                    <option value="accountant">📑 Accountant</option>
+                    <option value="investment banker">🏦 Investment Banker</option>
+                    <option value="digital marketing analyst">📈 Digital Marketing Analyst</option>
+                    <option value="marketing coordinator">📣 Marketing Coordinator</option>
+                    <option value="sales executive">🤝 Sales Executive</option>
+                    <option value="project coordinator">📋 Project Coordinator</option>
+                    <option value="hr generalist">👥 HR Generalist</option>
+                    <option value="operations manager">⚙️ Operations Manager</option>
+                    <option value="product manager">🚀 Product Manager</option>
+                </optgroup>
+
+                <optgroup label="💻 Technology & Engineering">
+                    <option value="data analyst">📊 Data Analyst</option>
+                    <option value="data scientist">🔬 Data Scientist</option>
+                    <option value="machine learning engineer">🧠 ML Engineer</option>
+                    <option value="ai engineer">🤖 AI Engineer</option>
+                    <option value="python developer">🐍 Python Developer</option>
+                    <option value="web developer">🌐 Web Developer</option>
+                    <option value="frontend developer">🎨 Frontend Developer</option>
+                    <option value="backend developer">⚙️ Backend Developer</option>
+                    <option value="full stack developer">🔄 Full Stack Developer</option>
+                    <option value="android developer">📱 Android Developer</option>
+                    <option value="ios developer">🍎 iOS Developer</option>
+                    <option value="devops engineer">🛠️ DevOps Engineer</option>
+                    <option value="cloud engineer">☁️ Cloud Engineer</option>
+                    <option value="cybersecurity analyst">🔒 Cybersecurity Analyst</option>
+                    <option value="software engineer">💻 Software Engineer</option>
+                    <option value="database administrator">🗄️ Database Administrator</option>
+                    <option value="blockchain developer">⛓️ Blockchain Developer</option>
+                    <option value="data engineer">📦 Data Engineer</option>
+                    <option value="prompt engineer">✨ Prompt Engineer</option>
+                    <option value="ar vr developer">🥽 AR/VR Developer</option>
+                    <option value="embedded engineer">🔌 Embedded Engineer</option>
+                </optgroup>
+
+                <optgroup label="🔬 Healthcare & Science">
+                    <option value="bioinformatics scientist">🧬 Bioinformatics Scientist</option>
+                    <option value="clinical data analyst">🏥 Clinical Data Analyst</option>
+                </optgroup>
+            </select>
+        </div>
+        <div class="field">
+            <label>📄 Upload Resume (PDF)</label>
+            <div class="upload-zone" id="uploadZone" onclick="document.getElementById('resumeFile').click()">
+                <div class="upload-icon">📄</div>
+                <p id="uploadText">Click to upload PDF</p>
+                <span id="fileName">PDF files only</span>
+            </div>
+            <input type="file" id="resumeFile" accept=".pdf" onchange="handleFile(this)">
+        </div>
+        <button class="btn" onclick="analyzeResume()">✨ Analyze Resume →</button>
+        <div class="error-msg" id="errorMsg"></div>
+    </div>
+
+    <!-- Degree Recommendations Card -->
+    <div class="card animate-fade-scale" style="animation-delay: 0.1s;">
+        <div class="card-title">🎓 Degree Guidance</div>
+        <div class="field">
+            <label>Select Your Degree</label>
+            <select id="degreeSelect">
+                <option value="">Select your degree...</option>
+                <optgroup label="🎓 Arts & Humanities">
+                    <option value="Bachelor of Arts (BA)">📖 BA - Arts (General)</option>
+                    <option value="Bachelor of Arts - Economics">📊 BA - Economics</option>
+                    <option value="Bachelor of Arts - Psychology">🧠 BA - Psychology</option>
+                    <option value="Bachelor of Arts - English">📚 BA - English</option>
+                    <option value="Bachelor of Fine Arts (BFA)">🎨 BFA - Fine Arts</option>
+                    <option value="Bachelor of Journalism & Mass Communication">📰 BJMC - Journalism</option>
+                </optgroup>
+                <optgroup label="💰 Commerce & Business">
+                    <option value="Bachelor of Commerce (B.Com)">📈 B.Com - Commerce</option>
+                    <option value="Bachelor of Business Administration (BBA)">💼 BBA - Business Admin</option>
+                    <option value="Bachelor of Economics">📉 Economics</option>
+                </optgroup>
+                <optgroup label="🔬 Science & Technology">
+                    <option value="Bachelor of Science (B.Sc)">🔬 B.Sc - Science</option>
+                    <option value="Bachelor of Computer Applications (BCA)">💻 BCA - Computer Applications</option>
+                    <option value="Bachelor of Engineering (B.Tech/BE)">⚙️ B.Tech/BE - Engineering</option>
+                    <option value="B.Sc - Computer Science">🖥️ B.Sc CS</option>
+                    <option value="B.Sc - Mathematics">📐 B.Sc Mathematics</option>
+                    <option value="B.Sc - Statistics">📊 B.Sc Statistics</option>
+                    <option value="B.Sc - Physics">⚛️ B.Sc Physics</option>
+                    <option value="B.Sc - Chemistry">🧪 B.Sc Chemistry</option>
+                    <option value="B.Sc - Biology">🧬 B.Sc Biology</option>
+                </optgroup>
+            </select>
+        </div>
+        <button class="btn btn-primary" onclick="getDegreeRecommendations()">🎯 Get Career Recommendations →</button>
+    </div>
+
+    <!-- Technologies Card - Simple Icons Only -->
+    <div class="card animate-fade-scale" style="animation-delay: 0.2s;">
+        <div class="card-title">⚙️ Technologies</div>
+        <div class="tech-stack">
+            <span class="tech-icon">🐍 Python</span>
+            <span class="tech-icon">🧠 NLP</span>
+            <span class="tech-icon">🤖 ML</span>
+            <span class="tech-icon">🐼 Pandas</span>
+            <span class="tech-icon">⚡ Flask</span>
+            <span class="tech-icon">🎨 HTML/CSS/JS</span>
+            <span class="tech-icon">🔍 NLTK</span>
+            <span class="tech-icon">📊 scikit-learn</span>
+        </div>
+    </div>
+
+    <!-- Loading -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>🤖 Analyzing your resume...</p>
+    </div>
+
+    <!-- Results Section -->
+    <div class="card results-panel" id="results">
+        <div class="card-title">📊 Analysis Results</div>
+        <div class="score-row">
+            <div class="score-block" id="scoreCircle">
+                <span class="num" id="scoreNum">0%</span>
+                <span class="lbl">Match</span>
+            </div>
+            <div class="score-msg">
+                <h3 id="scoreTitle">Your Result</h3>
+                <p id="scoreDesc"></p>
+            </div>
+        </div>
+        <div class="skills-row">
+            <div class="skill-group have">
+                <h4>✅ Skills You Have</h4>
+                <div id="matchedSkills"></div>
+            </div>
+            <div class="skill-group need">
+                <h4>📚 Skills to Learn</h4>
+                <div id="missingSkills"></div>
+            </div>
+        </div>
+        <div class="roadmap-title">🗺️ Your Career Roadmap</div>
+        <div id="roadmapSteps"></div>
+    </div>
+
+    <!-- Degree Results Section -->
+    <div class="card results-panel" id="degreeResults">
+        <div class="card-title">🎓 Career Recommendations</div>
+        <div id="degreeRecommendationsContent"></div>
+    </div>
+
+</div>
+
+<script>
+let selectedFile = null;
+
+function handleFile(input) {
+    if (input.files[0]) {
+        selectedFile = input.files[0];
+        document.getElementById('uploadText').textContent = '✅ File selected!';
+        document.getElementById('fileName').textContent = selectedFile.name;
+        document.getElementById('uploadZone').classList.add('has-file');
+    }
+}
+
+async function analyzeResume() {
+    const jobRole = document.getElementById('jobRole').value;
+    const errorMsg = document.getElementById('errorMsg');
+    const fileInput = document.getElementById('resumeFile');
+
+    errorMsg.style.display = 'none';
+    document.getElementById('degreeResults').style.display = 'none';
+
+    if (!jobRole) {
+        errorMsg.textContent = '⚠️ Please select a job role!';
+        errorMsg.style.display = 'block';
+        return;
+    }
+    if (!fileInput.files[0]) {
+        errorMsg.textContent = '⚠️ Please upload your resume PDF!';
+        errorMsg.style.display = 'block';
+        return;
+    }
+
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('results').style.display = 'none';
+
+    const formData = new FormData();
+    formData.append('job_role', jobRole);
+    formData.append('resume', fileInput.files[0]);
+
+    try {
+        const response = await fetch('/analyze', { method: 'POST', body: formData });
+        const data = await response.json();
+        document.getElementById('loading').style.display = 'none';
+
+        if (data.error) {
+            errorMsg.textContent = '❌ ' + data.error;
+            errorMsg.style.display = 'block';
+            return;
+        }
+
+        showResults(data);
+    } catch (err) {
+        document.getElementById('loading').style.display = 'none';
+        errorMsg.textContent = '❌ Something went wrong. Please try again.';
+        errorMsg.style.display = 'block';
+    }
+}
+
+function showResults(data) {
+    const score = data.score;
+    const circle = document.getElementById('scoreCircle');
+    document.getElementById('scoreNum').textContent = score + '%';
+
+    circle.className = 'score-block';
+    let title, desc;
+
+    if (score >= 70) {
+        circle.classList.add('score-high');
+        title = '🎉 Great Match! You\'re almost there!';
+        desc = `You have ${data.matched_skills.length} out of ${data.total_required} required skills.`;
+    } else if (score >= 40) {
+        circle.classList.add('score-mid');
+        title = '📈 Getting There! Solid Foundation';
+        desc = `You have ${data.matched_skills.length} matching skills. Focus on the ${data.missing_skills.length} areas below.`;
+    } else {
+        circle.classList.add('score-low');
+        title = '🚀 Exciting Journey Ahead!';
+        desc = `You have ${data.matched_skills.length} relevant skills. Follow the roadmap below!`;
+    }
+
+    document.getElementById('scoreTitle').textContent = title;
+    document.getElementById('scoreDesc').textContent = desc;
+
+    document.getElementById('matchedSkills').innerHTML = data.matched_skills.length > 0
+        ? data.matched_skills.map(s => `<span class="tag tag-have">✅ ${s}</span>`).join('')
+        : '<span style="color:#aaa;">No matching skills found</span>';
+
+    if (data.missing_skills.length > 0) {
+        let missingHtml = '';
+        for (let skill of data.missing_skills) {
+            const resource = data.learning_resources ? data.learning_resources[skill] : null;
+            missingHtml += `<span class="tag tag-need">📖 ${skill}${resource ? `<a href="${resource}" target="_blank" class="resource-link">Learn</a>` : ''}</span>`;
+        }
+        document.getElementById('missingSkills').innerHTML = missingHtml;
+    } else {
+        document.getElementById('missingSkills').innerHTML = '<span style="color:#00825e;">🎉 You have all required skills!</span>';
+    }
+
+    document.getElementById('roadmapSteps').innerHTML = data.roadmap
+        .map((step, i) => `<div class="step"><div class="step-n">${String(i+1).padStart(2,'0')}</div><div class="step-text">${step}</div></div>`).join('');
+
+    document.getElementById('results').style.display = 'block';
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+}
+
+async function getDegreeRecommendations() {
+    const degreeSelect = document.getElementById('degreeSelect');
+    const degreeName = degreeSelect.value;
+    const errorMsg = document.getElementById('errorMsg');
+    
+    errorMsg.style.display = 'none';
+    document.getElementById('results').style.display = 'none';
+    
+    if (!degreeName) {
+        errorMsg.textContent = '⚠️ Please select your degree!';
+        errorMsg.style.display = 'block';
+        return;
+    }
+    
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('degreeResults').style.display = 'none';
+    
+    try {
+        const response = await fetch('/api/degree-recommendations', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ degree_name: degreeName })
+        });
+        const data = await response.json();
+        document.getElementById('loading').style.display = 'none';
+        
+        if (data.error) {
+            errorMsg.textContent = '❌ ' + data.error;
+            errorMsg.style.display = 'block';
+            return;
+        }
+        
+        showDegreeResults(data);
+    } catch (err) {
+        document.getElementById('loading').style.display = 'none';
+        errorMsg.textContent = '❌ Something went wrong.';
+        errorMsg.style.display = 'block';
+    }
+}
+
+function showDegreeResults(data) {
+    const container = document.getElementById('degreeRecommendationsContent');
+    
+    container.innerHTML = `
+        <div style="margin-bottom: 24px;">
+            <h3 style="color: #4361ee; margin-bottom: 12px;">✨ Your Transferable Skills</h3>
+            <div>${data.transferable_skills.map(s => `<span class="tag tag-have">🎯 ${s}</span>`).join('')}</div>
+        </div>
+        <div style="margin-bottom: 24px;">
+            <h3 style="color: #4361ee; margin-bottom: 12px;">💼 Best Fit Job Roles</h3>
+            <div>${data.recommended_roles.map(role => `<span class="tag" style="background:#e8f0fe;color:#4361ee;">${role}</span>`).join('')}</div>
+        </div>
+        <div style="margin-bottom: 24px;">
+            <h3 style="color: #4361ee; margin-bottom: 12px;">📚 Personalized Learning Roadmap</h3>
+            ${data.roadmap.map((step, i) => `<div class="step"><div class="step-n">${String(i+1).padStart(2,'0')}</div><div class="step-text">${step}</div></div>`).join('')}
+        </div>
+        <div>
+            <h3 style="color: #4361ee; margin-bottom: 12px;">🎓 Recommended Certifications</h3>
+            ${data.certifications.map(cert => `<div style="padding: 10px 0; border-bottom: 1px solid #e5e2dc;">📜 ${cert}</div>`).join('')}
+        </div>
+        <div style="margin-top: 24px; padding: 16px; background: #f8f6f2; border-radius: 12px;">
+            <p style="font-size: 0.9rem;">💡 <strong>Pro Tip:</strong> Start with one role that excites you most, then use the resume analyzer above to check your readiness!</p>
+        </div>
+    `;
+    
+    document.getElementById('degreeResults').style.display = 'block';
+    document.getElementById('degreeResults').scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
