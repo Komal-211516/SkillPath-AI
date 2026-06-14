@@ -1,433 +1,1679 @@
-# skills_data.py - Complete job skills database with 40+ roles for all degrees
+# skills_data.py - Complete job skills database for all 45 job roles
 
-job_skills = {
-    # ============================================
-    # ROLES FOR ARTS / HUMANITIES GRADUATES (BA, BFA, Journalism)
-    # ============================================
-    
-    "content writer": {
-        "required_skills": ["writing", "editing", "research", "seo", "blogging", "copywriting", "storytelling", "grammar", "content strategy", "wordpress", "social media", "proofreading", "communication", "creative writing"],
-        "roadmap": ["Master English grammar and writing", "Learn SEO writing", "Study content formats", "Learn WordPress", "Practice copywriting", "Build portfolio of 10+ samples", "Start a blog", "Freelance on platforms"],
-        "learning_resources": {"seo": "https://moz.com/beginners-guide-to-seo", "wordpress": "https://wordpress.com/learn/", "copywriting": "https://www.copyblogger.com/"}
-    },
-    
-    "copywriter": {
-        "required_skills": ["copywriting", "persuasion", "marketing", "advertising", "brand voice", "headlines", "cta", "email marketing", "landing pages", "social media", "research", "creativity"],
-        "roadmap": ["Learn copywriting fundamentals", "Study advertising psychology", "Master headline writing", "Learn email marketing", "Practice writing ads", "Build portfolio", "Get certified in copywriting"],
-        "learning_resources": {"copywriting": "https://www.copyblogger.com/", "email marketing": "https://mailchimp.com/resources/"}
-    },
-    
-    "social media manager": {
-        "required_skills": ["social media", "content creation", "community management", "instagram", "facebook", "linkedin", "twitter", "tiktok", "analytics", "scheduling", "engagement", "trends", "branding"],
-        "roadmap": ["Learn social media platforms", "Study content strategy", "Master scheduling tools", "Learn analytics", "Practice community management", "Build portfolio", "Get Meta certified"],
-        "learning_resources": {"social media": "https://www.facebook.com/business/learn", "analytics": "https://analytics.google.com/"}
-    },
-    
-    "journalist": {
-        "required_skills": ["writing", "research", "interviewing", "fact-checking", "news gathering", "ethics", "investigation", "deadline management", "editing", "storytelling", "media law"],
-        "roadmap": ["Master news writing", "Learn investigative techniques", "Study media ethics", "Practice interviewing", "Build portfolio", "Intern at news outlets", "Get journalism certification"],
-        "learning_resources": {"writing": "https://www.poynter.org/", "research": "https://www.journalism.org/"}
-    },
-    
-    "public relations specialist": {
-        "required_skills": ["communication", "media relations", "press releases", "crisis management", "branding", "storytelling", "event planning", "social media", "writing", "networking"],
-        "roadmap": ["Learn PR fundamentals", "Master press release writing", "Study crisis communication", "Learn media monitoring", "Build media contacts", "Get PR certification"],
-        "learning_resources": {"pr": "https://www.prsa.org/", "crisis management": "https://www.instituteforpr.org/"}
-    },
-    
-    "event coordinator": {
-        "required_skills": ["event planning", "organization", "budgeting", "vendor management", "logistics", "communication", "problem solving", "time management", "negotiation", "creativity"],
-        "roadmap": ["Learn event planning basics", "Master budgeting", "Study logistics management", "Learn vendor negotiation", "Plan 2-3 events", "Get CMP certification"],
-        "learning_resources": {"event planning": "https://www.mpi.org/", "budgeting": "https://www.eventbrite.com/blog/"}
-    },
-    
-    "graphic designer": {
-        "required_skills": ["photoshop", "illustrator", "figma", "typography", "color theory", "branding", "indesign", "layout design", "canva", "visual communication", "logo design", "premiere pro"],
-        "roadmap": ["Learn design fundamentals", "Master Photoshop/Illustrator", "Learn Figma", "Study branding", "Learn InDesign", "Build Behance portfolio", "Freelance"],
-        "learning_resources": {"photoshop": "https://helpx.adobe.com/photoshop/tutorials.html", "figma": "https://help.figma.com/"}
-    },
-    
-    "ui ux designer": {
-        "required_skills": ["figma", "adobe xd", "user research", "wireframing", "prototyping", "visual design", "interaction design", "usability testing", "design systems", "html", "css", "user personas"],
-        "roadmap": ["Learn design principles", "Master Figma", "Learn user research", "Study interaction design", "Practice wireframing", "Learn usability testing", "Build portfolio"],
-        "learning_resources": {"figma": "https://help.figma.com/", "user research": "https://www.nngroup.com/"}
-    },
-    
-    "video editor": {
-        "required_skills": ["premiere pro", "after effects", "final cut pro", "video editing", "motion graphics", "color grading", "audio editing", "storytelling", "compression", "codecs"],
-        "roadmap": ["Learn editing software", "Master Premiere Pro", "Learn After Effects", "Study color grading", "Practice editing", "Build showreel", "Freelance"],
-        "learning_resources": {"premiere pro": "https://helpx.adobe.com/premiere-pro/tutorials.html", "after effects": "https://helpx.adobe.com/after-effects/tutorials.html"}
-    },
-    
-    "photographer": {
-        "required_skills": ["photography", "lightroom", "photoshop", "composition", "lighting", "editing", "portrait", "product", "event", "business", "marketing"],
-        "roadmap": ["Master camera settings", "Learn composition", "Study lighting", "Learn Lightroom/Photoshop", "Build portfolio", "Create website", "Market services"],
-        "learning_resources": {"photography": "https://www.canon.com/learning/", "lightroom": "https://helpx.adobe.com/lightroom/tutorials.html"}
-    },
-    
-    "illustrator": {
-        "required_skills": ["illustrator", "photoshop", "drawing", "sketching", "color theory", "composition", "digital art", "character design", "storyboarding", "visual storytelling"],
-        "roadmap": ["Learn fundamentals", "Master Illustrator", "Learn Photoshop", "Study color theory", "Practice daily", "Build portfolio", "Sell on marketplaces"],
-        "learning_resources": {"illustrator": "https://helpx.adobe.com/illustrator/tutorials.html", "digital art": "https://www.proko.com/"}
-    },
-    
-    "motion graphics designer": {
-        "required_skills": ["after effects", "premiere pro", "cinema 4d", "animation", "motion graphics", "typography", "storyboarding", "illustrator", "photoshop", "sound design"],
-        "roadmap": ["Learn After Effects", "Master Premiere Pro", "Learn Cinema 4D", "Study animation principles", "Learn sound design", "Build showreel", "Freelance"],
-        "learning_resources": {"after effects": "https://helpx.adobe.com/after-effects/tutorials.html", "cinema 4d": "https://www.maxon.net/en/training"}
-    },
-    
-    "web designer": {
-        "required_skills": ["figma", "adobe xd", "html", "css", "javascript", "responsive design", "typography", "color theory", "ux design", "prototyping", "wordpress"],
-        "roadmap": ["Learn design tools", "Master Figma", "Learn HTML/CSS", "Study responsive design", "Learn basic JS", "Build portfolio", "Get clients"],
-        "learning_resources": {"figma": "https://help.figma.com/", "html": "https://developer.mozilla.org/"}
-    },
+# ============================================
+# MASTER LEARNING RESOURCES DATABASE
+# ============================================
 
-    # ============================================
-    # ROLES FOR COMMERCE GRADUATES
-    # ============================================
+learning_resources_db = {
+    # Content Writing Skills
+    "writing": "https://www.youtube.com/watch?v=vtIzMaLkCaM",
+    "copywriting": "https://www.youtube.com/watch?v=OoyE2yLphfI",
+    "editing": "https://www.youtube.com/watch?v=Uy6F_yA5tiU",
+    "proofreading": "https://www.youtube.com/watch?v=wP3RTI0_63Q",
+    "research": "https://www.youtube.com/watch?v=7s7e0vB6F3A",
+    "storytelling": "https://www.youtube.com/watch?v=GePvP7w4LHg",
+    "grammar": "https://www.youtube.com/watch?v=McY_i2hGLeA",
+    "seo": "https://www.youtube.com/watch?v=MYE6T_gd7H0",
+    "blogging": "https://www.youtube.com/watch?v=EGcCbN7yUro",
+    "content strategy": "https://www.youtube.com/watch?v=2zNSgS8lS-g",
+    "wordpress": "https://www.youtube.com/watch?v=0iUjFpgR2DM",
+    "social media": "https://www.youtube.com/watch?v=EjS5ROn1G4E",
+    "communication": "https://www.youtube.com/watch?v=HAnw168huqA",
+    "creative writing": "https://www.youtube.com/watch?v=WehxiGOm2pQ",
+    "fact checking": "https://www.youtube.com/watch?v=YjZZQx3Sf2I",
+    "competitor analysis": "https://www.youtube.com/watch?v=U4og0LRdXTs",
     
-    "business analyst": {
-        "required_skills": ["excel", "sql", "communication", "problem solving", "requirements gathering", "agile", "scrum", "data analysis", "documentation", "stakeholder management", "power bi"],
-        "roadmap": ["Master Excel", "Learn SQL", "Study business process", "Learn Agile/Scrum", "Practice requirements gathering", "Learn data viz", "Get ECBA cert", "Build case studies"],
-        "learning_resources": {"excel": "https://support.microsoft.com/excel", "sql": "https://www.w3schools.com/sql/", "agile": "https://www.agilealliance.org/"}
-    },
+    # Copywriting Skills
+    "persuasion": "https://www.youtube.com/watch?v=OoyE2yLphfI",
+    "advertising": "https://www.youtube.com/watch?v=3Q0h6eK5n0Q",
+    "brand voice": "https://www.youtube.com/watch?v=jkfbiZ1ojBs",
+    "email marketing": "https://www.youtube.com/watch?v=zR7QJ6tJ8qE",
+    "marketing": "https://www.youtube.com/watch?v=EjS5ROn1G4E",
     
-    "financial analyst": {
-        "required_skills": ["excel", "financial modeling", "accounting", "valuation", "financial statements", "budgeting", "forecasting", "data analysis", "power bi"],
-        "roadmap": ["Master Advanced Excel", "Learn financial modeling", "Study accounting principles", "Learn valuation techniques", "Master financial statements", "Get CFA/CPA certification"],
-        "learning_resources": {"excel": "https://support.microsoft.com/excel", "financial modeling": "https://corporatefinanceinstitute.com/"}
-    },
+    # Social Media Skills
+    "content creation": "https://www.youtube.com/watch?v=2zNSgS8lS-g",
+    "community management": "https://www.youtube.com/watch?v=3QnD2c4Xovk",
+    "engagement": "https://www.youtube.com/watch?v=EjS5ROn1G4E",
+    "trends": "https://www.youtube.com/watch?v=EjS5ROn1G4E",
+    "instagram": "https://www.youtube.com/watch?v=EjS5ROn1G4E",
+    "facebook": "https://www.youtube.com/watch?v=EjS5ROn1G4E",
+    "linkedin": "https://www.youtube.com/watch?v=EjS5ROn1G4E",
+    "twitter": "https://www.youtube.com/watch?v=EjS5ROn1G4E",
+    "youtube": "https://www.youtube.com/watch?v=EjS5ROn1G4E",
+    "google analytics": "https://www.youtube.com/watch?v=li2gYyE4bwQ",
+    "hootsuite": "https://www.youtube.com/watch?v=EjS5ROn1G4E",
     
-    "accountant": {
-        "required_skills": ["accounting", "taxation", "tally", "quickbooks", "gst", "financial statements", "auditing", "excel", "bookkeeping"],
-        "roadmap": ["Learn accounting principles", "Master Tally/QuickBooks", "Study taxation", "Learn GST compliance", "Practice bookkeeping", "Get CA/CPA certification"],
-        "learning_resources": {"accounting": "https://www.icai.org/", "tally": "https://tallysolutions.com/"}
-    },
+    # Journalism Skills
+    "interviewing": "https://www.youtube.com/watch?v=HQuVQhPz_sU",
+    "news gathering": "https://www.youtube.com/watch?v=YjZZQx3Sf2I",
+    "ethics": "https://www.youtube.com/watch?v=6OLPL5p0fMg",
+    "investigation": "https://www.youtube.com/watch?v=YjZZQx3Sf2I",
+    "deadline management": "https://www.youtube.com/watch?v=iONDebHX9qk",
+    "indesign": "https://www.youtube.com/watch?v=IXe2MpBfcpA",
     
-    "digital marketing analyst": {
-        "required_skills": ["google analytics", "seo", "data analysis", "excel", "sql", "tableau", "marketing metrics", "conversion tracking", "a/b testing", "google ads"],
-        "roadmap": ["Master Google Analytics", "Learn SQL", "Master Excel", "Learn data viz", "Study attribution models", "Learn A/B testing", "Get GA certification"],
-        "learning_resources": {"google analytics": "https://analytics.google.com/analytics/academy/", "sql": "https://www.w3schools.com/sql/"}
-    },
+    # PR Skills
+    "media relations": "https://www.youtube.com/watch?v=HAnw168huqA",
+    "crisis management": "https://www.youtube.com/watch?v=Kc7FvT2kDv8",
+    "networking": "https://www.youtube.com/watch?v=HAnw168huqA",
+    "press releases": "https://www.youtube.com/watch?v=OoyE2yLphfI",
     
-    "marketing coordinator": {
-        "required_skills": ["marketing", "campaign management", "social media", "email marketing", "content creation", "analytics", "market research", "branding", "communication"],
-        "roadmap": ["Learn marketing fundamentals", "Master campaign management", "Study social media marketing", "Learn email marketing", "Practice market research", "Get HubSpot certification"],
-        "learning_resources": {"marketing": "https://academy.hubspot.com/", "email marketing": "https://mailchimp.com/resources/"}
-    },
+    # Event Skills
+    "event planning": "https://www.youtube.com/watch?v=3d1lA5QH4n4",
+    "logistics": "https://www.youtube.com/watch?v=3d1lA5QH4n4",
+    "organization": "https://www.youtube.com/watch?v=3d1lA5QH4n4",
+    "vendor management": "https://www.youtube.com/watch?v=3d1lA5QH4n4",
+    "budgeting": "https://www.youtube.com/watch?v=w3Ql5J4Wj-s",
+    "trello": "https://www.youtube.com/watch?v=3d1lA5QH4n4",
     
-    "sales executive": {
-        "required_skills": ["communication", "negotiation", "crm", "lead generation", "cold calling", "client relationship", "salesforce", "presentation", "closing skills"],
-        "roadmap": ["Learn sales fundamentals", "Master CRM tools", "Learn lead generation", "Practice cold calling", "Study negotiation", "Get Salesforce certification"],
-        "learning_resources": {"salesforce": "https://trailhead.salesforce.com/", "crm": "https://www.salesforce.com/crm/"}
-    },
+    # Design Skills
+    "photoshop": "https://www.youtube.com/watch?v=IWYw7YSjp_k",
+    "illustrator": "https://www.youtube.com/watch?v=Ib8UBgp3bMY",
+    "figma": "https://www.youtube.com/watch?v=FTFaQWZBqQ8",
+    "canva": "https://www.youtube.com/watch?v=DjPc9WX7tE0",
+    "typography": "https://www.youtube.com/watch?v=wI5iPLr8ZrM",
+    "color theory": "https://www.youtube.com/watch?v=_2LLXnUdUIc",
+    "branding": "https://www.youtube.com/watch?v=jkfbiZ1ojBs",
+    "layout design": "https://www.youtube.com/watch?v=5XwRufNqK8Q",
+    "visual communication": "https://www.youtube.com/watch?v=Qqjs3mTbFSQ",
+    "logo design": "https://www.youtube.com/watch?v=7jNiaI-Jgkk",
+    "adobe xd": "https://www.youtube.com/watch?v=68w2VwalD5w",
+    "ui design": "https://www.youtube.com/watch?v=RV46eabVZOw",
+    "ux design": "https://www.youtube.com/watch?v=pNnEeWz0xlE",
+    "wireframing": "https://www.youtube.com/watch?v=fKvfcmYI4Ts",
+    "prototyping": "https://www.youtube.com/watch?v=7ZR4qbo2F9A",
+    "procreate": "https://www.youtube.com/watch?v=FTFaQWZBqQ8",
+    "after effects": "https://www.youtube.com/watch?v=YfYDZ_-5dws",
+    "premiere pro": "https://www.youtube.com/watch?v=HLSZR8D2lLA",
+    "animation": "https://www.youtube.com/watch?v=YfYDZ_-5dws",
+    "motion graphics": "https://www.youtube.com/watch?v=YfYDZ_-5dws",
+    "keyframing": "https://www.youtube.com/watch?v=YfYDZ_-5dws",
+    "cinema 4d": "https://www.youtube.com/watch?v=YfYDZ_-5dws",
     
-    "project coordinator": {
-        "required_skills": ["communication", "ms project", "excel", "jira", "risk management", "budgeting", "scheduling", "client management", "documentation", "agile", "scrum"],
-        "roadmap": ["Learn project management", "Master MS Project/Excel", "Learn Agile/Scrum", "Master Jira/Trello", "Study risk management", "Get CAPM certification"],
-        "learning_resources": {"ms project": "https://support.microsoft.com/project", "jira": "https://www.atlassian.com/software/jira/guides"}
-    },
+    # Video/Photo Skills
+    "video editing": "https://www.youtube.com/watch?v=HLSZR8D2lLA",
+    "audio editing": "https://www.youtube.com/watch?v=HLSZR8D2lLA",
+    "color grading": "https://www.youtube.com/watch?v=HLSZR8D2lLA",
+    "compression": "https://www.youtube.com/watch?v=HLSZR8D2lLA",
+    "photography": "https://www.youtube.com/watch?v=KX0G66aKsls",
+    "lightroom": "https://www.youtube.com/watch?v=KX0G66aKsls",
+    "composition": "https://www.youtube.com/watch?v=_2LLXnUdUIc",
+    "lighting": "https://www.youtube.com/watch?v=_2LLXnUdUIc",
+    "retouching": "https://www.youtube.com/watch?v=IWYw7YSjp_k",
     
-    "hr generalist": {
-        "required_skills": ["recruitment", "employee relations", "performance management", "hr policies", "labor laws", "payroll", "communication", "conflict resolution", "onboarding"],
-        "roadmap": ["Learn recruitment", "Study labor laws", "Master onboarding", "Learn performance management", "Study HRMS tools", "Get SHRM certification"],
-        "learning_resources": {"recruitment": "https://www.shrm.org/", "labor laws": "https://www.dol.gov/"}
-    },
+    # Web Development
+    "html": "https://www.youtube.com/watch?v=qz0aGYrrlhU",
+    "css": "https://www.youtube.com/watch?v=1Rs2ND1ryYc",
+    "javascript": "https://www.youtube.com/watch?v=PkZNo7MFNFg",
+    "react": "https://www.youtube.com/watch?v=bMknfKXIFA8",
+    "nodejs": "https://www.youtube.com/watch?v=ENrzD9HAZK4",
+    "bootstrap": "https://www.youtube.com/watch?v=-qfEOE4vtxE",
+    "tailwind": "https://www.youtube.com/watch?v=UBOj6rSyR1o",
+    "responsive design": "https://www.youtube.com/watch?v=1Rs2ND1ryYc",
+    "git": "https://www.youtube.com/watch?v=RGOj5lHIKsk",
+    "github": "https://www.youtube.com/watch?v=RGOj5lHIKsk",
+    "rest api": "https://www.youtube.com/watch?v=lsMQRaeKNDk",
+    "mongodb": "https://www.youtube.com/watch?v=2QQGWYe7IDU",
+    "postgresql": "https://www.youtube.com/watch?v=qw--VYLpxG4",
+    "mysql": "https://www.youtube.com/watch?v=7S_tz1z_5bA",
+    "sql": "https://www.youtube.com/watch?v=HXV3zeQKqGY",
+    "flask": "https://www.youtube.com/watch?v=Z1RJmh_OqeA",
+    "django": "https://www.youtube.com/watch?v=rHux0gMZ3Eg",
+    "express": "https://www.youtube.com/watch?v=ENrzD9HAZK4",
+    "spring boot": "https://www.youtube.com/watch?v=grEKMHGYyns",
+    "jwt": "https://www.youtube.com/watch?v=K6pwjJ5WBvA",
     
-    "product manager": {
-        "required_skills": ["communication", "agile", "product strategy", "market research", "user experience", "data analysis", "roadmapping", "scrum", "prioritization"],
-        "roadmap": ["Learn product lifecycle", "Master Agile/Scrum", "Learn analytics tools", "Study user research", "Learn roadmapping", "Get CSPO certification"],
-        "learning_resources": {"product strategy": "https://www.productschool.com/", "agile": "https://www.agilealliance.org/"}
-    },
+    # Data Science
+    "python": "https://www.youtube.com/watch?v=rfscVS0vtbw",
+    "pandas": "https://www.youtube.com/watch?v=vmEHCJofslg",
+    "numpy": "https://www.youtube.com/watch?v=QUT1VHiLmmI",
+    "matplotlib": "https://www.youtube.com/watch?v=5JcxHo7P_h0",
+    "seaborn": "https://www.youtube.com/watch?v=5JcxHo7P_h0",
+    "scikit-learn": "https://www.youtube.com/watch?v=0B5eIE_1vpU",
+    "tensorflow": "https://www.youtube.com/watch?v=tPYj3fFJGjk",
+    "keras": "https://www.youtube.com/watch?v=qFJeN9V1ZsI",
+    "pytorch": "https://www.youtube.com/watch?v=tPYj3fFJGjk",
+    "transformers": "https://www.youtube.com/watch?v=w3coRFpFHQ8",
+    "nltk": "https://www.youtube.com/watch?v=w3coRFpFHQ8",
+    "openai": "https://www.youtube.com/watch?v=w3coRFpFHQ8",
+    "langchain": "https://www.youtube.com/watch?v=w3coRFpFHQ8",
+    "machine learning": "https://www.youtube.com/watch?v=GwIo3gDZCVQ",
+    "deep learning": "https://www.youtube.com/watch?v=VyWAvY2CF9c",
+    "statistics": "https://www.youtube.com/watch?v=xxpc-HPKN28",
+    "data visualization": "https://www.youtube.com/watch?v=5JcxHo7P_h0",
+    "eda": "https://www.youtube.com/watch?v=5JcxHo7P_h0",
+    "feature engineering": "https://www.youtube.com/watch?v=0B5eIE_1vpU",
+    "tableau": "https://www.youtube.com/watch?v=aHaOIvR00So",
+    "power bi": "https://www.youtube.com/watch?v=ty8E4YiMRGM",
+    "excel": "https://www.youtube.com/watch?v=r01fch-gc0M",
+    "sqlite": "https://www.youtube.com/watch?v=pd-0G0MigUA",
+    
+    # Cloud & DevOps
+    "aws": "https://www.youtube.com/watch?v=3hLmDS179YE",
+    "ec2": "https://www.youtube.com/watch?v=3hLmDS179YE",
+    "s3": "https://www.youtube.com/watch?v=3hLmDS179YE",
+    "lambda": "https://www.youtube.com/watch?v=3hLmDS179YE",
+    "rds": "https://www.youtube.com/watch?v=3hLmDS179YE",
+    "vpc": "https://www.youtube.com/watch?v=3hLmDS179YE",
+    "iam": "https://www.youtube.com/watch?v=3hLmDS179YE",
+    "cloudwatch": "https://www.youtube.com/watch?v=3hLmDS179YE",
+    "docker": "https://www.youtube.com/watch?v=3c-iBn73dDE",
+    "kubernetes": "https://www.youtube.com/watch?v=X48VuDVv0do",
+    "jenkins": "https://www.youtube.com/watch?v=6iBBQ6yEvIc",
+    "jenkins pipeline": "https://www.youtube.com/watch?v=6iBBQ6yEvIc",
+    "github actions": "https://www.youtube.com/watch?v=RGOj5lHIKsk",
+    "terraform": "https://www.youtube.com/watch?v=SLB_c_ayRMo",
+    "linux": "https://www.youtube.com/watch?v=VbEx7B_PTOE",
+    "bash": "https://www.youtube.com/watch?v=oxuRxtrO2Ag",
+    "ci/cd": "https://www.youtube.com/watch?v=42UP1fxi2SY",
+    
+    # Cybersecurity
+    "network security": "https://www.youtube.com/watch?v=zM5C9z7BGZ0",
+    "firewalls": "https://www.youtube.com/watch?v=kDEX1HXybrU",
+    "encryption": "https://www.youtube.com/watch?v=6_Cxj5WKpIw",
+    "cryptography": "https://www.youtube.com/watch?v=6_Cxj5WKpIw",
+    "wireshark": "https://www.youtube.com/watch?v=zM5C9z7BGZ0",
+    "nmap": "https://www.youtube.com/watch?v=zM5C9z7BGZ0",
+    "incident response": "https://www.youtube.com/watch?v=YjZOYI_l4PE",
+    "risk management": "https://www.youtube.com/watch?v=YjZOYI_l4PE",
+    
+    # Blockchain
+    "solidity": "https://www.youtube.com/watch?v=caBZ5VbTqHI",
+    "ethereum": "https://www.youtube.com/watch?v=caBZ5VbTqHI",
+    "smart contracts": "https://www.youtube.com/watch?v=caBZ5VbTqHI",
+    "web3.js": "https://www.youtube.com/watch?v=caBZ5VbTqHI",
+    "truffle": "https://www.youtube.com/watch?v=caBZ5VbTqHI",
+    "remix": "https://www.youtube.com/watch?v=caBZ5VbTqHI",
+    "metamask": "https://www.youtube.com/watch?v=caBZ5VbTqHI",
+    
+    # AR/VR
+    "unity": "https://www.youtube.com/watch?v=IlKaB1et15M",
+    "c#": "https://www.youtube.com/watch?v=GhQdlIFylQ8",
+    "blender": "https://www.youtube.com/watch?v=IlKaB1et15M",
+    "arcore": "https://www.youtube.com/watch?v=IlKaB1et15M",
+    "oculus sdk": "https://www.youtube.com/watch?v=IlKaB1et15M",
+    
+    # Embedded
+    "c": "https://www.youtube.com/watch?v=KJgsSF0Q0cY",
+    "c++": "https://www.youtube.com/watch?v=vLnPwxZdW4Y",
+    "arduino": "https://www.youtube.com/watch?v=KJgsSF0Q0cY",
+    "raspberry pi": "https://www.youtube.com/watch?v=KJgsSF0Q0cY",
+    "stm32": "https://www.youtube.com/watch?v=KJgsSF0Q0cY",
+    "iot": "https://www.youtube.com/watch?v=KJgsSF0Q0cY",
+    "firmware development": "https://www.youtube.com/watch?v=KJgsSF0Q0cY",
+    "mqtt": "https://www.youtube.com/watch?v=KJgsSF0Q0cY",
+    
+    # Mobile Development
+    "kotlin": "https://www.youtube.com/watch?v=F9UC9DY-vIU",
+    "java": "https://www.youtube.com/watch?v=grEKMHGYyns",
+    "android studio": "https://www.youtube.com/watch?v=F9UC9DY-vIU",
+    "xml": "https://www.youtube.com/watch?v=qz0aGYrrlhU",
+    "retrofit": "https://www.youtube.com/watch?v=F9UC9DY-vIU",
+    "material design": "https://www.youtube.com/watch?v=F9UC9DY-vIU",
+    "swift": "https://www.youtube.com/watch?v=comQ1-md2X8",
+    "uikit": "https://www.youtube.com/watch?v=comQ1-md2X8",
+    "xcode": "https://www.youtube.com/watch?v=comQ1-md2X8",
+    "auto layout": "https://www.youtube.com/watch?v=comQ1-md2X8",
+    "urlsession": "https://www.youtube.com/watch?v=comQ1-md2X8",
+    "mvvm": "https://www.youtube.com/watch?v=comQ1-md2X8",
+    
+    # Business Skills
+    "accounting": "https://www.youtube.com/watch?v=yYX4bvXS0t0",
+    "finance": "https://www.youtube.com/watch?v=w3Ql5J4Wj-s",
+    "tally": "https://www.youtube.com/watch?v=yYX4bvXS0t0",
+    "quickbooks": "https://www.youtube.com/watch?v=yYX4bvXS0t0",
+    "gst": "https://www.youtube.com/watch?v=yYX4bvXS0t0",
+    "taxation": "https://www.youtube.com/watch?v=yYX4bvXS0t0",
+    "financial statements": "https://www.youtube.com/watch?v=yYX4bvXS0t0",
+    "valuation": "https://www.youtube.com/watch?v=w3Ql5J4Wj-s",
+    "mergers & acquisitions": "https://www.youtube.com/watch?v=w3Ql5J4Wj-s",
+    "capital markets": "https://www.youtube.com/watch?v=w3Ql5J4Wj-s",
+    "financial modeling": "https://www.youtube.com/watch?v=w3Ql5J4Wj-s",
+    "requirements gathering": "https://www.youtube.com/watch?v=pEHY3YbNYaE",
+    "documentation": "https://www.youtube.com/watch?v=7s7e0vB6F3A",
+    "jira": "https://www.youtube.com/watch?v=3d1lA5QH4n4",
+    "ms project": "https://www.youtube.com/watch?v=3d1lA5QH4n4",
+    
+    # HR Skills
+    "recruitment": "https://www.youtube.com/watch?v=HQuVQhPz_sU",
+    "onboarding": "https://www.youtube.com/watch?v=HQuVQhPz_sU",
+    "employee relations": "https://www.youtube.com/watch?v=HAnw168huqA",
+    "hr policies": "https://www.youtube.com/watch?v=HAnw168huqA",
+    "conflict resolution": "https://www.youtube.com/watch?v=Kc7FvT2kDv8",
+    "hrms": "https://www.youtube.com/watch?v=HAnw168huqA",
+    
+    # Product Management
+    "product strategy": "https://www.youtube.com/watch?v=3WrP8B1FwGc",
+    "user research": "https://www.youtube.com/watch?v=pNnEeWz0xlE",
+    "prioritization": "https://www.youtube.com/watch?v=3WrP8B1FwGc",
+    "user stories": "https://www.youtube.com/watch?v=pEHY3YbNYaE",
+    "prd writing": "https://www.youtube.com/watch?v=pEHY3YbNYaE",
+    "scrum": "https://www.youtube.com/watch?v=9TycLR0TqFA",
+    "notion": "https://www.youtube.com/watch?v=3d1lA5QH4n4",
+    
+    # Operations
+    "operations": "https://www.youtube.com/watch?v=3d1lA5QH4n4",
+    "process improvement": "https://www.youtube.com/watch?v=3d1lA5QH4n4",
+    "quality control": "https://www.youtube.com/watch?v=3d1lA5QH4n4",
+    "erp": "https://www.youtube.com/watch?v=3d1lA5QH4n4",
+    "supply chain": "https://www.youtube.com/watch?v=3d1lA5QH4n4",
+    "inventory management": "https://www.youtube.com/watch?v=3d1lA5QH4n4",
+    
+    # Big Data
+    "spark": "https://www.youtube.com/watch?v=KCEJuPcFILk",
+    "pyspark": "https://www.youtube.com/watch?v=KCEJuPcFILk",
+    "hadoop": "https://www.youtube.com/watch?v=KCEJuPcFILk",
+    "hdfs": "https://www.youtube.com/watch?v=KCEJuPcFILk",
+    "aws emr": "https://www.youtube.com/watch?v=3hLmDS179YE",
+    
+    # Soft Skills
+    "teamwork": "https://www.youtube.com/watch?v=3QnD2c4Xovk",
+    "problem solving": "https://www.youtube.com/watch?v=H6Z7lEByy1U",
+    "time management": "https://www.youtube.com/watch?v=iONDebHX9qk",
+    "presentation": "https://www.youtube.com/watch?v=UN7DmS9rN-c",
+    "negotiation": "https://www.youtube.com/watch?v=Kc7FvT2kDv8",
+    "leadership": "https://www.youtube.com/watch?v=wXZei1byxuU",
+    "creativity": "https://www.youtube.com/watch?v=WehxiGOm2pQ",
+    "attention to detail": "https://www.youtube.com/watch?v=Uy6F_yA5tiU",
+    "adaptability": "https://www.youtube.com/watch?v=6OLPL5p0fMg",
+    "critical thinking": "https://www.youtube.com/watch?v=6OLPL5p0fMg",
+    
+    # Tools
+    "ms word": "https://www.youtube.com/watch?v=3O5sCU1WiwI",
+    "powerpoint": "https://www.youtube.com/watch?v=XFkzRNyygfk",
+    "google docs": "https://www.youtube.com/watch?v=3O5sCU1WiwI",
+    "google sheets": "https://www.youtube.com/watch?v=r01fch-gc0M",
+    "mailchimp": "https://www.youtube.com/watch?v=zR7QJ6tJ8qE",
+    "semrush": "https://www.youtube.com/watch?v=MYE6T_gd7H0",
+    "postman": "https://www.youtube.com/watch?v=GZvSYJDk-us",
+    "vscode": "https://www.youtube.com/watch?v=qz0aGYrrlhU",
+    "jupyter": "https://www.youtube.com/watch?v=rfscVS0vtbw",
+    "colab": "https://www.youtube.com/watch?v=rfscVS0vtbw",
+    "obs studio": "https://www.youtube.com/watch?v=HLSZR8D2lLA",
+    "audition": "https://www.youtube.com/watch?v=HLSZR8D2lLA",
+    "davinci resolve": "https://www.youtube.com/watch?v=HLSZR8D2lLA",
+    "final cut pro": "https://www.youtube.com/watch?v=HLSZR8D2lLA",
+    "behance": "https://www.youtube.com/watch?v=DjPc9WX7tE0",
+    "linkedin": "https://www.youtube.com/watch?v=EjS5ROn1G4E",
+    "grammarly": "https://www.youtube.com/watch?v=wP3RTI0_63Q",
+}
 
-    # ============================================
-    # ROLES FOR TECH GRADUATES
-    # ============================================
-    
+# ============================================
+# ENHANCED ROADMAP DATA WITH TIME, DIFFICULTY, PROJECTS, CERTIFICATIONS
+# ============================================
+
+# Skill Prerequisites Mapping
+skill_prerequisites = {
+    "pandas": ["python"],
+    "numpy": ["python"],
+    "matplotlib": ["python"],
+    "seaborn": ["python", "matplotlib"],
+    "scikit-learn": ["python", "numpy"],
+    "machine learning": ["python", "statistics"],
+    "deep learning": ["python", "machine learning"],
+    "tensorflow": ["python", "machine learning"],
+    "react": ["javascript", "html", "css"],
+    "nodejs": ["javascript"],
+    "django": ["python"],
+    "flask": ["python"],
+    "tableau": ["data visualization"],
+    "power bi": ["data visualization"],
+    "photoshop": ["basic design principles"],
+    "illustrator": ["basic design principles"],
+    "figma": ["ui design basics"],
+}
+
+# Project Ideas for Each Skill
+project_ideas = {
+    "python": [
+        {"name": "📊 Calculator App", "difficulty": "Easy", "time": "2 hours", "description": "Build a basic calculator with GUI"},
+        {"name": "📝 To-Do List Manager", "difficulty": "Easy", "time": "3 hours", "description": "Create a task management app"},
+        {"name": "📈 Data Analysis Dashboard", "difficulty": "Medium", "time": "1 day", "description": "Analyze CSV data and create visualizations"}
+    ],
+    "sql": [
+        {"name": "📚 Library Management Database", "difficulty": "Easy", "time": "3 hours", "description": "Design database for library system"},
+        {"name": "🛍️ E-commerce Database", "difficulty": "Medium", "time": "1 day", "description": "Create product, orders, customers tables"},
+        {"name": "📊 Student Grade Analysis", "difficulty": "Medium", "time": "6 hours", "description": "Build grade tracking system"}
+    ],
+    "excel": [
+        {"name": "📊 Sales Dashboard", "difficulty": "Easy", "time": "2 hours", "description": "Create pivot tables and charts"},
+        {"name": "💰 Budget Tracker", "difficulty": "Easy", "time": "2 hours", "description": "Track income and expenses"},
+        {"name": "📈 Financial Report", "difficulty": "Medium", "time": "4 hours", "description": "Create professional business report"}
+    ],
+    "html": [
+        {"name": "🌐 Personal Portfolio", "difficulty": "Easy", "time": "3 hours", "description": "Build your first website"},
+        {"name": "📝 Blog Homepage", "difficulty": "Easy", "time": "2 hours", "description": "Create a blog layout"},
+        {"name": "📞 Contact Form", "difficulty": "Medium", "time": "3 hours", "description": "Build interactive contact form"}
+    ],
+    "css": [
+        {"name": "🎨 Animated Landing Page", "difficulty": "Medium", "time": "4 hours", "description": "Create animations and transitions"},
+        {"name": "📱 Responsive Website", "difficulty": "Medium", "time": "5 hours", "description": "Mobile-first design"},
+        {"name": "🎭 CSS Art Gallery", "difficulty": "Advanced", "time": "6 hours", "description": "Create art using pure CSS"}
+    ],
+    "javascript": [
+        {"name": "🎮 Tic-Tac-Toe Game", "difficulty": "Medium", "time": "4 hours", "description": "Build interactive game"},
+        {"name": "🌦️ Weather App", "difficulty": "Medium", "time": "5 hours", "description": "Fetch API and display weather"},
+        {"name": "📝 Notes App", "difficulty": "Easy", "time": "3 hours", "description": "CRUD operations with localStorage"}
+    ],
+    "react": [
+        {"name": "✅ Todo List App", "difficulty": "Easy", "time": "4 hours", "description": "Learn state and props"},
+        {"name": "🛒 Shopping Cart", "difficulty": "Medium", "time": "6 hours", "description": "Build e-commerce cart"},
+        {"name": "🎬 Movie Search App", "difficulty": "Medium", "time": "5 hours", "description": "API integration with React"}
+    ],
+    "git": [
+        {"name": "📁 Personal Repository", "difficulty": "Easy", "time": "1 hour", "description": "Create and manage first repo"},
+        {"name": "🤝 Collaborative Project", "difficulty": "Medium", "time": "2 hours", "description": "Practice branching and merging"},
+        {"name": "🌿 Feature Branch Workflow", "difficulty": "Medium", "time": "2 hours", "description": "Implement Git flow"}
+    ],
+    "photoshop": [
+        {"name": "🎨 Social Media Post", "difficulty": "Easy", "time": "1 hour", "description": "Design engaging social media graphic"},
+        {"name": "🖼️ Photo Retouching", "difficulty": "Medium", "time": "2 hours", "description": "Professional photo editing"},
+        {"name": "🎭 Poster Design", "difficulty": "Medium", "time": "3 hours", "description": "Create event poster"}
+    ],
+    "figma": [
+        {"name": "📱 Mobile App Design", "difficulty": "Easy", "time": "3 hours", "description": "Design app screens"},
+        {"name": "🌐 Website Wireframe", "difficulty": "Easy", "time": "2 hours", "description": "Create low-fidelity wireframes"},
+        {"name": "🎨 Design System", "difficulty": "Advanced", "time": "5 hours", "description": "Build component library"}
+    ]
+}
+
+# Certification Paths for Each Job Role
+certification_paths = {
+    "data analyst": [
+        {
+            "name": "📊 Google Data Analytics Professional Certificate",
+            "provider": "Google",
+            "duration": "6 months",
+            "cost": "Free audit / ₹2,500 for certificate",
+            "level": "Beginner",
+            "link": "https://www.coursera.org/professional-certificates/google-data-analytics",
+            "skills_covered": ["Excel", "SQL", "Tableau", "R", "Data Cleaning"]
+        },
+        {
+            "name": "📈 IBM Data Analyst Professional Certificate",
+            "provider": "IBM",
+            "duration": "4 months",
+            "cost": "Free audit / ₹2,500 for certificate",
+            "level": "Beginner",
+            "link": "https://www.coursera.org/professional-certificates/ibm-data-analyst",
+            "skills_covered": ["Python", "SQL", "Pandas", "Excel", "Data Visualization"]
+        },
+        {
+            "name": "📊 Microsoft Power BI Data Analyst (PL-300)",
+            "provider": "Microsoft",
+            "duration": "2 months",
+            "cost": "$99 exam fee",
+            "level": "Intermediate",
+            "link": "https://learn.microsoft.com/en-us/power-bi/",
+            "skills_covered": ["Power BI", "DAX", "Data Modeling", "Dashboard Design"]
+        }
+    ],
+    "web developer": [
+        {
+            "name": "🌐 Meta Frontend Developer Professional Certificate",
+            "provider": "Meta",
+            "duration": "7 months",
+            "cost": "₹2,500/month on Coursera",
+            "level": "Beginner",
+            "link": "https://www.coursera.org/professional-certificates/meta-frontend-developer",
+            "skills_covered": ["HTML", "CSS", "JavaScript", "React", "Git"]
+        },
+        {
+            "name": "⚡ Full Stack Web Development (The Odin Project)",
+            "provider": "Open Source",
+            "duration": "6-9 months",
+            "cost": "Free",
+            "level": "Beginner to Intermediate",
+            "link": "https://www.theodinproject.com/",
+            "skills_covered": ["HTML", "CSS", "JavaScript", "Ruby", "Rails", "Node.js"]
+        },
+        {
+            "name": "☁️ AWS Certified Cloud Practitioner",
+            "provider": "Amazon Web Services",
+            "duration": "1-2 months",
+            "cost": "$100 exam fee",
+            "level": "Beginner",
+            "link": "https://aws.amazon.com/certification/certified-cloud-practitioner/",
+            "skills_covered": ["Cloud Basics", "AWS Services", "Deployment"]
+        }
+    ],
+    "python developer": [
+        {
+            "name": "🐍 Python for Everybody (University of Michigan)",
+            "provider": "Coursera",
+            "duration": "2-3 months",
+            "cost": "Free audit",
+            "level": "Beginner",
+            "link": "https://www.coursera.org/specializations/python",
+            "skills_covered": ["Python", "Data Structures", "APIs", "Databases"]
+        },
+        {
+            "name": "🚀 Google IT Automation with Python",
+            "provider": "Google",
+            "duration": "6 months",
+            "cost": "Free audit",
+            "level": "Intermediate",
+            "link": "https://www.coursera.org/professional-certificates/google-it-automation",
+            "skills_covered": ["Python", "Git", "Automation", "Troubleshooting"]
+        }
+    ],
+    "graphic designer": [
+        {
+            "name": "🎨 Google UX Design Certificate",
+            "provider": "Google",
+            "duration": "6 months",
+            "cost": "Free audit / ₹2,500 for certificate",
+            "level": "Beginner",
+            "link": "https://www.coursera.org/professional-certificates/google-ux-design",
+            "skills_covered": ["Figma", "User Research", "Wireframing", "Prototyping"]
+        },
+        {
+            "name": "🖌️ Adobe Certified Professional (Photoshop/Illustrator)",
+            "provider": "Adobe",
+            "duration": "1-2 months",
+            "cost": "$95 per exam",
+            "level": "Intermediate",
+            "link": "https://certiport.pearsonvue.com/Certifications/Adobe/Certify",
+            "skills_covered": ["Photoshop", "Illustrator", "Design Principles"]
+        }
+    ],
+    "business analyst": [
+        {
+            "name": "📊 IIBA Entry Certificate in Business Analysis (ECBA)",
+            "provider": "IIBA",
+            "duration": "2-3 months",
+            "cost": "$110 exam fee",
+            "level": "Beginner",
+            "link": "https://www.iiba.org/business-analysis-certifications/ecba/",
+            "skills_covered": ["Requirements Gathering", "Business Analysis", "Documentation"]
+        },
+        {
+            "name": "📈 Google Data Analytics Certificate",
+            "provider": "Google",
+            "duration": "6 months",
+            "cost": "Free audit",
+            "level": "Beginner",
+            "link": "https://www.coursera.org/google-data-analytics",
+            "skills_covered": ["Data Analysis", "SQL", "Tableau"]
+        }
+    ]
+}
+
+# Daily/Weekly Action Plans
+weekly_action_plans = {
     "data analyst": {
-        "required_skills": ["python", "sql", "excel", "tableau", "power bi", "statistics", "pandas", "numpy", "data visualization", "machine learning"],
-        "roadmap": ["Learn Python basics", "Learn SQL", "Practice Excel", "Learn Pandas/NumPy", "Learn data viz", "Study statistics", "Build projects", "Apply for jobs"],
-        "learning_resources": {"python": "https://www.python.org/", "sql": "https://www.w3schools.com/sql/", "tableau": "https://www.tableau.com/learn/training"}
+        "week1": {
+            "theme": "Python Fundamentals",
+            "daily_tasks": [
+                {"day": "Monday", "task": "Install Python and IDE, learn variables and data types", "hours": 2},
+                {"day": "Tuesday", "task": "Learn lists, tuples, and dictionaries", "hours": 2},
+                {"day": "Wednesday", "task": "Practice loops and conditionals", "hours": 2},
+                {"day": "Thursday", "task": "Learn functions and modules", "hours": 2},
+                {"day": "Friday", "task": "Practice problems on HackerRank", "hours": 2},
+                {"day": "Saturday", "task": "Mini-project: Calculator App", "hours": 3},
+                {"day": "Sunday", "task": "Review and practice weak areas", "hours": 2}
+            ],
+            "resources": ["https://www.w3schools.com/python/", "https://realpython.com/"]
+        },
+        "week2": {
+            "theme": "SQL for Data Analysis",
+            "daily_tasks": [
+                {"day": "Monday", "task": "Learn SELECT, WHERE, ORDER BY", "hours": 2},
+                {"day": "Tuesday", "task": "Practice JOINs (INNER, LEFT, RIGHT)", "hours": 2},
+                {"day": "Wednesday", "task": "Learn GROUP BY and aggregate functions", "hours": 2},
+                {"day": "Thursday", "task": "Practice subqueries and CTEs", "hours": 2},
+                {"day": "Friday", "task": "Learn database design basics", "hours": 2},
+                {"day": "Saturday", "task": "Mini-project: Library Database", "hours": 3},
+                {"day": "Sunday", "task": "SQL practice on SQLZoo", "hours": 2}
+            ],
+            "resources": ["https://www.w3schools.com/sql/", "https://sqlzoo.net/"]
+        },
+        "week3": {
+            "theme": "Excel & Data Visualization",
+            "daily_tasks": [
+                {"day": "Monday", "task": "Learn Pivot Tables and Pivot Charts", "hours": 2},
+                {"day": "Tuesday", "task": "Master VLOOKUP, HLOOKUP, XLOOKUP", "hours": 2},
+                {"day": "Wednesday", "task": "Learn Conditional Formatting", "hours": 2},
+                {"day": "Thursday", "task": "Practice Data Cleaning in Excel", "hours": 2},
+                {"day": "Friday", "task": "Learn Tableau/Power BI basics", "hours": 2},
+                {"day": "Saturday", "task": "Mini-project: Sales Dashboard", "hours": 3},
+                {"day": "Sunday", "task": "Create portfolio-ready dashboard", "hours": 3}
+            ],
+            "resources": ["https://support.microsoft.com/excel", "https://www.tableau.com/learn"]
+        }
     },
-    
-    "data scientist": {
-        "required_skills": ["python", "sql", "statistics", "machine learning", "pandas", "numpy", "deep learning", "data visualization", "big data"],
-        "roadmap": ["Master Python/R", "Learn advanced stats", "Master SQL", "Learn data cleaning", "Study ML algorithms", "Learn deep learning", "Practice Kaggle"],
-        "learning_resources": {"python": "https://www.python.org/", "machine learning": "https://www.coursera.org/learn/machine-learning"}
-    },
-    
-    "machine learning engineer": {
-        "required_skills": ["python", "machine learning", "deep learning", "tensorflow", "keras", "scikit-learn", "numpy", "pandas", "statistics", "neural networks"],
-        "roadmap": ["Learn Python", "Study Math/Stats", "Learn Scikit-learn", "Study Deep Learning", "Learn TensorFlow", "Work on ML projects", "Publish on GitHub"],
-        "learning_resources": {"tensorflow": "https://www.tensorflow.org/learn", "scikit-learn": "https://scikit-learn.org/"}
-    },
-    
-    "python developer": {
-        "required_skills": ["python", "django", "flask", "sql", "api", "git", "oop", "data structures", "algorithms", "rest api"],
-        "roadmap": ["Master Python", "Learn OOP", "Learn Django/Flask", "Learn SQL", "Build REST APIs", "Practice Data Structures", "Build projects"],
-        "learning_resources": {"django": "https://docs.djangoproject.com/", "flask": "https://flask.palletsprojects.com/"}
-    },
-    
     "web developer": {
-        "required_skills": ["html", "css", "javascript", "react", "nodejs", "sql", "git", "api", "bootstrap"],
-        "roadmap": ["Learn HTML/CSS", "Learn JavaScript", "Learn React", "Learn backend", "Learn databases", "Build projects", "Deploy apps"],
-        "learning_resources": {"react": "https://react.dev/learn", "nodejs": "https://nodejs.org/en/learn"}
+        "week1": {
+            "theme": "HTML & CSS Basics",
+            "daily_tasks": [
+                {"day": "Monday", "task": "Learn HTML tags and structure", "hours": 2},
+                {"day": "Tuesday", "task": "Build a personal profile page", "hours": 2},
+                {"day": "Wednesday", "task": "Learn CSS selectors and properties", "hours": 2},
+                {"day": "Thursday", "task": "Master Flexbox and Grid", "hours": 2},
+                {"day": "Friday", "task": "Learn responsive design", "hours": 2},
+                {"day": "Saturday", "task": "Mini-project: Portfolio Website", "hours": 3},
+                {"day": "Sunday", "task": "Add animations and transitions", "hours": 2}
+            ],
+            "resources": ["https://developer.mozilla.org/", "https://www.freecodecamp.org/"]
+        },
+        "week2": {
+            "theme": "JavaScript Essentials",
+            "daily_tasks": [
+                {"day": "Monday", "task": "Learn variables, data types, functions", "hours": 2},
+                {"day": "Tuesday", "task": "Practice DOM manipulation", "hours": 2},
+                {"day": "Wednesday", "task": "Learn events and event handling", "hours": 2},
+                {"day": "Thursday", "task": "Practice arrays and objects", "hours": 2},
+                {"day": "Friday", "task": "Learn ES6+ features", "hours": 2},
+                {"day": "Saturday", "task": "Mini-project: Interactive To-Do App", "hours": 3},
+                {"day": "Sunday", "task": "Debug and deploy project", "hours": 2}
+            ],
+            "resources": ["https://javascript.info/", "https://www.freecodecamp.org/"]
+        }
     }
 }
 
 # ============================================
-# DEGREE-SPECIFIC RECOMMENDATIONS (FIXED)
+# ALL 45 JOB ROLES WITH ENHANCED ROADMAPS
+# ============================================
+
+job_skills = {
+    # ============================================
+    # 01. CONTENT WRITER
+    # ============================================
+    "content writer": {
+        "required_skills": [
+            "writing", "copywriting", "editing", "proofreading", "research",
+            "storytelling", "grammar", "seo", "blogging", "content strategy",
+            "wordpress", "social media", "communication", "creative writing",
+            "fact checking", "competitor analysis"
+        ],
+        "roadmap": [
+            {"step": "Master English grammar and writing", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn SEO basics for content", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn WordPress basics", "time": "1 week", "difficulty": "Beginner", "priority": "Medium"},
+            {"step": "Practice writing blogs", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Build portfolio of 5-10 articles", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Apply for junior content writer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 02. COPYWRITER
+    # ============================================
+    "copywriter": {
+        "required_skills": [
+            "copywriting", "persuasion", "advertising", "storytelling", "creativity",
+            "social media", "email marketing", "marketing", "research", "communication",
+            "brand voice", "landing pages", "headlines"
+        ],
+        "roadmap": [
+            {"step": "Learn copywriting fundamentals", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Study advertising psychology", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master headline writing", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn email marketing", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Practice writing ads", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Build portfolio", "time": "3 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for copywriter roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 03. SOCIAL MEDIA MANAGER
+    # ============================================
+    "social media manager": {
+        "required_skills": [
+            "social media", "content creation", "community management", "engagement",
+            "trends", "branding", "instagram", "facebook", "linkedin", "twitter",
+            "youtube", "analytics", "communication", "creativity", "canva",
+            "google analytics", "hootsuite"
+        ],
+        "roadmap": [
+            {"step": "Learn social media platforms", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master content creation", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn social media analytics", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Learn scheduling tools", "time": "1 week", "difficulty": "Beginner", "priority": "Medium"},
+            {"step": "Get Meta certification", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Manage a social media page", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for junior social media roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 04. JOURNALIST
+    # ============================================
+    "journalist": {
+        "required_skills": [
+            "writing", "research", "interviewing", "editing", "proofreading",
+            "storytelling", "news gathering", "ethics", "investigation",
+            "deadline management", "indesign", "wordpress"
+        ],
+        "roadmap": [
+            {"step": "Master news writing", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn investigative techniques", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Study media ethics", "time": "2 weeks", "difficulty": "Beginner", "priority": "Medium"},
+            {"step": "Practice interviewing", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Build portfolio", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Intern at news outlets", "time": "1 month", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for journalist roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 05. PUBLIC RELATIONS SPECIALIST
+    # ============================================
+    "public relations specialist": {
+        "required_skills": [
+            "communication", "storytelling", "writing", "networking", "branding",
+            "media relations", "social media", "press releases", "crisis management",
+            "event planning", "email marketing", "research"
+        ],
+        "roadmap": [
+            {"step": "Learn PR fundamentals", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master press release writing", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Study crisis communication", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Learn media monitoring", "time": "2 weeks", "difficulty": "Beginner", "priority": "Medium"},
+            {"step": "Build media contacts", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Get PR certification", "time": "1 month", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for PR roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 06. EVENT COORDINATOR
+    # ============================================
+    "event coordinator": {
+        "required_skills": [
+            "event planning", "organization", "logistics", "problem solving",
+            "communication", "time management", "creativity", "teamwork",
+            "budgeting", "vendor management", "excel", "trello"
+        ],
+        "roadmap": [
+            {"step": "Learn event planning basics", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master budgeting", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Study logistics management", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn vendor negotiation", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Plan 2-3 events", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Get CMP certification", "time": "2 months", "difficulty": "Advanced", "priority": "Medium"},
+            {"step": "Apply for event coordinator roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 07. GRAPHIC DESIGNER
+    # ============================================
+    "graphic designer": {
+        "required_skills": [
+            "photoshop", "illustrator", "figma", "canva", "typography",
+            "color theory", "branding", "layout design", "visual communication",
+            "logo design", "creativity", "attention to detail", "communication"
+        ],
+        "roadmap": [
+            {"step": "Learn design fundamentals", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master Photoshop and Illustrator", "time": "4 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn Figma for UI/UX design", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Study color theory and typography", "time": "2 weeks", "difficulty": "Beginner", "priority": "Medium"},
+            {"step": "Build Behance portfolio with 10+ projects", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for junior designer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 08. UI/UX DESIGNER
+    # ============================================
+    "ui ux designer": {
+        "required_skills": [
+            "figma", "adobe xd", "wireframing", "prototyping", "ui design",
+            "ux design", "user research", "color theory", "typography",
+            "visual communication", "creativity", "attention to detail",
+            "html", "css", "interaction design", "user personas"
+        ],
+        "roadmap": [
+            {"step": "Learn design principles", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master Figma and Adobe XD", "time": "4 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn wireframing and prototyping", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Study user research and usability testing", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Build portfolio with 5-10 case studies", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for junior UI/UX roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 09. VIDEO EDITOR
+    # ============================================
+    "video editor": {
+        "required_skills": [
+            "premiere pro", "after effects", "video editing", "audio editing",
+            "storytelling", "compression", "color grading", "motion graphics",
+            "photoshop", "canva"
+        ],
+        "roadmap": [
+            {"step": "Learn editing software", "time": "3 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master Premiere Pro", "time": "4 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn After Effects", "time": "4 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Study color grading", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Practice editing", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Build showreel", "time": "3 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for video editor roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 10. PHOTOGRAPHER
+    # ============================================
+    "photographer": {
+        "required_skills": [
+            "photography", "lightroom", "photoshop", "composition", "lighting",
+            "editing", "retouching", "creativity", "communication", "attention to detail"
+        ],
+        "roadmap": [
+            {"step": "Master camera settings", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn composition and lighting", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Study editing in Lightroom/Photoshop", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Build portfolio", "time": "4 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Create website", "time": "2 weeks", "difficulty": "Beginner", "priority": "Medium"},
+            {"step": "Apply for photographer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 11. ILLUSTRATOR
+    # ============================================
+    "illustrator": {
+        "required_skills": [
+            "illustrator", "photoshop", "drawing", "sketching", "color theory",
+            "composition", "digital art", "creativity", "attention to detail",
+            "communication", "procreate", "canva"
+        ],
+        "roadmap": [
+            {"step": "Learn fundamentals", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master Illustrator", "time": "4 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn Photoshop", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Study color theory", "time": "2 weeks", "difficulty": "Beginner", "priority": "Medium"},
+            {"step": "Practice daily", "time": "Ongoing", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Build Behance portfolio", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for illustrator roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 12. MOTION GRAPHICS DESIGNER
+    # ============================================
+    "motion graphics designer": {
+        "required_skills": [
+            "after effects", "premiere pro", "illustrator", "photoshop",
+            "animation", "motion graphics", "typography", "storytelling",
+            "keyframing", "color grading"
+        ],
+        "roadmap": [
+            {"step": "Learn After Effects", "time": "4 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Master Premiere Pro", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn Illustrator for assets", "time": "2 weeks", "difficulty": "Beginner", "priority": "Medium"},
+            {"step": "Study animation principles", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Build showreel", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for motion graphics roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 13. WEB DESIGNER
+    # ============================================
+    "web designer": {
+        "required_skills": [
+            "figma", "html", "css", "bootstrap", "tailwind", "responsive design",
+            "typography", "color theory", "prototyping", "git", "canva"
+        ],
+        "roadmap": [
+            {"step": "Learn design tools (Figma)", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master HTML/CSS", "time": "3 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn Bootstrap and Tailwind", "time": "2 weeks", "difficulty": "Beginner", "priority": "Medium"},
+            {"step": "Learn JavaScript basics", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Build portfolio with 5 websites", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for web designer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 14. BUSINESS ANALYST
+    # ============================================
+    "business analyst": {
+        "required_skills": [
+            "excel", "sql", "communication", "problem solving", "data analysis",
+            "documentation", "requirements gathering", "presentation",
+            "jira", "trello", "ms project", "power bi"
+        ],
+        "roadmap": [
+            {"step": "Master Excel", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn SQL basics", "time": "3 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Study business process", "time": "2 weeks", "difficulty": "Beginner", "priority": "Medium"},
+            {"step": "Learn requirements gathering", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Practice documentation", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Get ECBA certification", "time": "2 months", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for business analyst roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 15. FINANCIAL ANALYST
+    # ============================================
+    "financial analyst": {
+        "required_skills": [
+            "excel", "financial statements", "accounting", "budgeting",
+            "forecasting", "data analysis", "financial modeling",
+            "valuation", "research", "communication", "attention to detail"
+        ],
+        "roadmap": [
+            {"step": "Master Advanced Excel", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn financial modeling", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Study accounting principles", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn valuation techniques", "time": "3 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Get CFA certification", "time": "6 months", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for financial analyst roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 16. ACCOUNTANT
+    # ============================================
+    "accountant": {
+        "required_skills": [
+            "accounting", "excel", "tally", "quickbooks", "financial statements",
+            "taxation", "gst", "bookkeeping", "auditing", "attention to detail"
+        ],
+        "roadmap": [
+            {"step": "Learn accounting principles", "time": "3 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master Tally/QuickBooks", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Study taxation basics", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn GST compliance", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Practice bookkeeping", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Get CA/CPA certification", "time": "6 months", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for accountant roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 17. DIGITAL MARKETING ANALYST
+    # ============================================
+    "digital marketing analyst": {
+        "required_skills": [
+            "google analytics", "seo", "excel", "sql", "marketing metrics",
+            "social media marketing", "email marketing", "communication",
+            "data analysis", "conversion tracking", "mailchimp", "semrush"
+        ],
+        "roadmap": [
+            {"step": "Master Google Analytics", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn SQL and Excel", "time": "3 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Study SEO and marketing metrics", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn data visualization", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Get GA certification", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Apply for digital marketing analyst roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 18. MARKETING COORDINATOR
+    # ============================================
+    "marketing coordinator": {
+        "required_skills": [
+            "marketing", "social media", "email marketing", "content creation",
+            "branding", "communication", "creativity", "organization",
+            "mailchimp", "canva", "excel", "trello"
+        ],
+        "roadmap": [
+            {"step": "Learn marketing fundamentals", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master social media management", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn email marketing", "time": "2 weeks", "difficulty": "Beginner", "priority": "Medium"},
+            {"step": "Practice content creation", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Get HubSpot certification", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Apply for marketing coordinator roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 19. SALES EXECUTIVE
+    # ============================================
+    "sales executive": {
+        "required_skills": [
+            "communication", "negotiation", "lead generation", "presentation",
+            "problem solving", "time management", "persuasion", "teamwork",
+            "crm", "linkedin", "excel"
+        ],
+        "roadmap": [
+            {"step": "Learn sales fundamentals", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master communication and negotiation", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn CRM basics", "time": "1 week", "difficulty": "Beginner", "priority": "Medium"},
+            {"step": "Practice cold calling", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Study sales techniques", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Get Salesforce certification", "time": "3 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Apply for sales executive roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 20. PROJECT COORDINATOR
+    # ============================================
+    "project coordinator": {
+        "required_skills": [
+            "communication", "organization", "time management", "problem solving",
+            "documentation", "scheduling", "budgeting", "jira", "trello",
+            "excel", "ms project"
+        ],
+        "roadmap": [
+            {"step": "Learn project management basics", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master MS Office and Excel", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn Jira and Trello", "time": "1 week", "difficulty": "Beginner", "priority": "Medium"},
+            {"step": "Study Agile basics", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Get CAPM certification", "time": "2 months", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for project coordinator roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 21. HR GENERALIST
+    # ============================================
+    "hr generalist": {
+        "required_skills": [
+            "recruitment", "onboarding", "employee relations", "communication",
+            "problem solving", "conflict resolution", "hr policies", "excel",
+            "linkedin", "google workspace"
+        ],
+        "roadmap": [
+            {"step": "Learn HR basics and recruitment", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Study labor laws", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Master onboarding processes", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn performance management", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Get SHRM certification", "time": "2 months", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for HR generalist roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 22. PRODUCT MANAGER
+    # ============================================
+    "product manager": {
+        "required_skills": [
+            "product strategy", "user research", "market research", "communication",
+            "data analysis", "prioritization", "user stories", "agile", "scrum",
+            "figma", "google analytics", "notion", "trello"
+        ],
+        "roadmap": [
+            {"step": "Learn product lifecycle", "time": "3 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master Agile/Scrum", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn analytics tools", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Study user research", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn product roadmapping", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Get CSPO certification", "time": "1 month", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for product manager roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 23. OPERATIONS MANAGER
+    # ============================================
+    "operations manager": {
+        "required_skills": [
+            "operations", "process improvement", "logistics", "inventory management",
+            "quality control", "excel", "communication", "problem solving",
+            "leadership", "erp", "trello"
+        ],
+        "roadmap": [
+            {"step": "Learn operations management", "time": "3 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master Excel", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Study supply chain basics", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn inventory management", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Get Six Sigma certification", "time": "2 months", "difficulty": "Advanced", "priority": "Medium"},
+            {"step": "Apply for operations manager roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 24. INVESTMENT BANKER
+    # ============================================
+    "investment banker": {
+        "required_skills": [
+            "financial modeling", "valuation", "mergers & acquisitions",
+            "capital markets", "excel", "financial statements", "research",
+            "presentation", "communication", "attention to detail"
+        ],
+        "roadmap": [
+            {"step": "Master financial modeling", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Learn valuation methods", "time": "3 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Study M&A processes", "time": "3 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Learn capital markets", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Get CFA certification", "time": "6 months", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for investment banking roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 25. DATA ANALYST
+    # ============================================
+    "data analyst": {
+        "required_skills": [
+            "python", "sql", "excel", "statistics", "data visualization",
+            "pandas", "numpy", "matplotlib", "seaborn", "tableau", "power bi",
+            "eda", "data cleaning", "communication"
+        ],
+        "roadmap": [
+            {"step": "Learn Python basics", "time": "3 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn SQL", "time": "3 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master Excel", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn Pandas and NumPy", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn data visualization", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Study statistics", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Build portfolio on Kaggle", "time": "3 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for data analyst roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 26. DATA SCIENTIST
+    # ============================================
+    "data scientist": {
+        "required_skills": [
+            "python", "sql", "statistics", "machine learning", "pandas",
+            "numpy", "matplotlib", "seaborn", "scikit-learn", "deep learning",
+            "feature engineering", "data visualization", "git"
+        ],
+        "roadmap": [
+            {"step": "Master Python", "time": "4 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn advanced statistics", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Master SQL", "time": "3 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn Scikit-learn", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Study machine learning algorithms", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Practice Kaggle", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Build portfolio", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for data scientist roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 27. MACHINE LEARNING ENGINEER
+    # ============================================
+    "machine learning engineer": {
+        "required_skills": [
+            "python", "machine learning", "deep learning", "scikit-learn",
+            "tensorflow", "keras", "pandas", "numpy", "statistics",
+            "feature engineering", "git", "flask"
+        ],
+        "roadmap": [
+            {"step": "Master Python", "time": "4 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Study Math/Stats", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn Scikit-learn", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Study Deep Learning", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Learn TensorFlow", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Work on ML projects", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Publish on GitHub", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Apply for ML engineer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 28. AI ENGINEER
+    # ============================================
+    "ai engineer": {
+        "required_skills": [
+            "python", "machine learning", "deep learning", "nlp", "computer vision",
+            "pytorch", "tensorflow", "transformers", "flask", "git", "docker"
+        ],
+        "roadmap": [
+            {"step": "Master Python", "time": "4 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Study Machine Learning", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Learn Deep Learning", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Learn NLP and Transformers", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Learn Computer Vision", "time": "3 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Build AI projects", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for AI engineer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 29. PYTHON DEVELOPER
+    # ============================================
+    "python developer": {
+        "required_skills": [
+            "python", "sql", "git", "data structures", "algorithms",
+            "oop", "pandas", "numpy", "flask", "sqlite"
+        ],
+        "roadmap": [
+            {"step": "Master Python fundamentals", "time": "4 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn OOP concepts", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn SQL and databases", "time": "3 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn Git and GitHub", "time": "1 week", "difficulty": "Beginner", "priority": "Medium"},
+            {"step": "Build 2-3 Python projects", "time": "4 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn Flask/Django", "time": "4 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Apply for Python developer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 30. WEB DEVELOPER
+    # ============================================
+    "web developer": {
+        "required_skills": [
+            "html", "css", "javascript", "react", "bootstrap", "git",
+            "rest api", "responsive design", "problem solving", "communication"
+        ],
+        "roadmap": [
+            {"step": "Learn HTML/CSS", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn JavaScript", "time": "3 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn React", "time": "4 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn Bootstrap", "time": "2 weeks", "difficulty": "Beginner", "priority": "Medium"},
+            {"step": "Build full-stack projects", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Deploy projects", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Apply for web developer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 31. FRONTEND DEVELOPER
+    # ============================================
+    "frontend developer": {
+        "required_skills": [
+            "html", "css", "javascript", "react", "bootstrap", "tailwind",
+            "git", "responsive design", "rest api", "figma"
+        ],
+        "roadmap": [
+            {"step": "Master HTML/CSS", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn JavaScript ES6+", "time": "3 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn React", "time": "4 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn Bootstrap/Tailwind", "time": "2 weeks", "difficulty": "Beginner", "priority": "Medium"},
+            {"step": "Build responsive websites", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Create portfolio projects", "time": "3 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for frontend developer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 32. BACKEND DEVELOPER
+    # ============================================
+    "backend developer": {
+        "required_skills": [
+            "python", "sql", "git", "rest api", "flask", "express",
+            "postgresql", "mongodb", "linux", "jwt"
+        ],
+        "roadmap": [
+            {"step": "Master backend language (Python/Node.js)", "time": "4 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn SQL and databases", "time": "3 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Build REST APIs", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn authentication (JWT)", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Study deployment", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Build backend projects", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for backend developer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 33. FULL STACK DEVELOPER
+    # ============================================
+    "full stack developer": {
+        "required_skills": [
+            "html", "css", "javascript", "react", "nodejs", "express",
+            "mongodb", "sql", "git", "rest api", "bootstrap"
+        ],
+        "roadmap": [
+            {"step": "Learn frontend (HTML/CSS/JS/React)", "time": "5 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn backend (Node.js/Express)", "time": "4 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn databases (MongoDB/SQL)", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Build full-stack projects", "time": "5 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Deploy applications", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Apply for full stack developer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 34. DEVOPS ENGINEER
+    # ============================================
+    "devops engineer": {
+        "required_skills": [
+            "linux", "bash", "python", "docker", "jenkins", "git",
+            "aws", "ci/cd", "jenkins pipeline", "github actions"
+        ],
+        "roadmap": [
+            {"step": "Master Linux", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn Bash scripting", "time": "2 weeks", "difficulty": "Beginner", "priority": "Medium"},
+            {"step": "Master Docker", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn Jenkins CI/CD", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn AWS basics", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Build CI/CD pipelines", "time": "3 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for DevOps engineer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 35. CLOUD ENGINEER
+    # ============================================
+    "cloud engineer": {
+        "required_skills": [
+            "aws", "ec2", "s3", "lambda", "rds", "vpc", "iam", "cloudwatch",
+            "linux", "bash", "python", "docker", "git"
+        ],
+        "roadmap": [
+            {"step": "Learn Linux basics", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Get AWS Cloud Practitioner cert", "time": "4 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn EC2, S3, Lambda", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn VPC and Networking", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Study IAM and Security", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Build cloud projects", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for cloud engineer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 36. CYBERSECURITY ANALYST
+    # ============================================
+    "cybersecurity analyst": {
+        "required_skills": [
+            "network security", "linux", "python", "firewalls", "encryption",
+            "cryptography", "incident response", "wireshark", "nmap",
+            "risk management", "security policies"
+        ],
+        "roadmap": [
+            {"step": "Learn networking basics", "time": "3 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master Linux", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn Python for security", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Study cryptography", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Learn Wireshark and Nmap", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Get Security+ certification", "time": "2 months", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for cybersecurity roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 37. SOFTWARE ENGINEER
+    # ============================================
+    "software engineer": {
+        "required_skills": [
+            "python", "java", "sql", "data structures", "algorithms",
+            "oop", "git", "problem solving", "django", "spring boot"
+        ],
+        "roadmap": [
+            {"step": "Master programming language", "time": "4 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn Data Structures", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn Algorithms", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Master SQL", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn OOP concepts", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Practice LeetCode", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Build projects", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for software engineer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 38. DATABASE ADMINISTRATOR
+    # ============================================
+    "database administrator": {
+        "required_skills": [
+            "sql", "mysql", "postgresql", "sqlite", "database design",
+            "indexing", "query optimization", "security", "normalization"
+        ],
+        "roadmap": [
+            {"step": "Master SQL", "time": "4 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn MySQL and PostgreSQL", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Study database design", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn indexing and optimization", "time": "2 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Learn backup and recovery", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Get Oracle/IBM certification", "time": "2 months", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for DBA roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 39. ANDROID DEVELOPER
+    # ============================================
+    "android developer": {
+        "required_skills": [
+            "kotlin", "java", "android studio", "xml", "git", "rest api",
+            "sqlite", "mvvm", "material design", "retrofit"
+        ],
+        "roadmap": [
+            {"step": "Learn Kotlin", "time": "4 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master Android Studio", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn XML layouts", "time": "2 weeks", "difficulty": "Beginner", "priority": "Medium"},
+            {"step": "Learn REST APIs and Retrofit", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn SQLite", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Publish apps on Play Store", "time": "3 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for Android developer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 40. IOS DEVELOPER
+    # ============================================
+    "ios developer": {
+        "required_skills": [
+            "swift", "xcode", "uikit", "auto layout", "git", "rest api",
+            "urlsession", "mvvm", "app store", "core data"
+        ],
+        "roadmap": [
+            {"step": "Learn Swift", "time": "4 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master Xcode", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn UIKit", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn REST APIs and URLSession", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn Core Data", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Submit apps to App Store", "time": "3 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for iOS developer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 41. BLOCKCHAIN DEVELOPER
+    # ============================================
+    "blockchain developer": {
+        "required_skills": [
+            "solidity", "ethereum", "smart contracts", "web3.js", "javascript",
+            "python", "cryptography", "truffle", "remix", "metamask"
+        ],
+        "roadmap": [
+            {"step": "Learn blockchain basics", "time": "2 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Master Solidity", "time": "4 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn Ethereum and Web3.js", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Build smart contracts", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Learn Truffle and Remix", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Deploy DApps", "time": "3 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for blockchain developer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 42. DATA ENGINEER
+    # ============================================
+    "data engineer": {
+        "required_skills": [
+            "python", "sql", "pyspark", "hadoop", "aws", "docker",
+            "etl", "postgresql", "mongodb", "pandas"
+        ],
+        "roadmap": [
+            {"step": "Master Python", "time": "4 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn SQL", "time": "3 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Learn PySpark and Hadoop", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Learn ETL pipelines", "time": "3 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Learn AWS data services", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Build data pipelines", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for data engineer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 43. PROMPT ENGINEER
+    # ============================================
+    "prompt engineer": {
+        "required_skills": [
+            "python", "openai", "langchain", "llm", "prompt design",
+            "rest api", "flask", "streamlit", "git"
+        ],
+        "roadmap": [
+            {"step": "Learn Python", "time": "3 weeks", "difficulty": "Beginner", "priority": "High"},
+            {"step": "Study LLM fundamentals", "time": "2 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Master prompt design", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn LangChain", "time": "3 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Learn OpenAI API", "time": "2 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Build AI applications", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for prompt engineer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 44. AR/VR DEVELOPER
+    # ============================================
+    "ar vr developer": {
+        "required_skills": [
+            "unity", "c#", "blender", "ar", "vr", "arcore",
+            "interaction design", "3d modeling", "oculus sdk"
+        ],
+        "roadmap": [
+            {"step": "Learn Unity", "time": "5 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Master C#", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn Blender for 3D assets", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn ARCore for AR", "time": "3 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Learn Oculus SDK for VR", "time": "3 weeks", "difficulty": "Intermediate", "priority": "Medium"},
+            {"step": "Build AR/VR projects", "time": "5 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for AR/VR developer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+    
+    # ============================================
+    # 45. EMBEDDED ENGINEER
+    # ============================================
+    "embedded engineer": {
+        "required_skills": [
+            "c", "c++", "python", "arduino", "raspberry pi", "stm32",
+            "iot", "firmware development", "linux", "git", "microcontrollers"
+        ],
+        "roadmap": [
+            {"step": "Master C/C++", "time": "5 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn Python", "time": "3 weeks", "difficulty": "Beginner", "priority": "Medium"},
+            {"step": "Learn Arduino and Raspberry Pi", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Study microcontrollers", "time": "3 weeks", "difficulty": "Intermediate", "priority": "High"},
+            {"step": "Learn firmware development", "time": "3 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Build IoT projects", "time": "4 weeks", "difficulty": "Advanced", "priority": "High"},
+            {"step": "Apply for embedded engineer roles", "time": "Ongoing", "difficulty": "Advanced", "priority": "High"}
+        ],
+        "learning_resources": learning_resources_db
+    },
+}
+
+# ============================================
+# DEGREE-SPECIFIC RECOMMENDATIONS
 # ============================================
 
 def get_skill_recommendations_by_degree(degree_name):
-    """Get complete skill recommendations based on degree - FIXED VERSION"""
+    """Get career recommendations for fresh graduates based on their degree"""
     degree_lower = degree_name.lower()
     
-    # ========== ARTS & HUMANITIES ==========
-    if "ba" in degree_lower and "psychology" in degree_lower:
+    # BA English / Arts
+    if "ba" in degree_lower and "english" in degree_lower:
         return {
-            "transferable_skills": ["human behavior", "research methods", "statistics", "empathy", "communication", "active listening", "problem solving", "data analysis", "critical thinking"],
-            "recommended_roles": ["ui ux designer", "hr generalist", "product manager", "user researcher", "content writer", "digital marketer", "market researcher"],
+            "transferable_skills": ["writing", "editing", "research", "critical thinking", "storytelling", "grammar", "communication"],
+            "recommended_roles": ["content writer", "copywriter", "social media manager", "journalist", "public relations specialist"],
             "roadmap": [
-                "Your understanding of human behavior is perfect for UX research roles",
-                "Learn Figma and design tools to become a UI/UX Designer",
-                "Study HR management software for HR Generalist roles",
-                "Learn data analysis tools (Excel, SQL) for user research",
-                "Build a portfolio with user research case studies"
+                "✍️ Take content writing and copywriting courses",
+                "📢 Learn digital marketing basics (SEO, social media)",
+                "📝 Build portfolio with 5-10 writing samples",
+                "🎯 Apply for content and media roles"
             ],
-            "certifications": ["Google UX Design Certificate", "HRCI Associate Professional in HR", "Nielsen Norman Group UX Certification"]
+            "certifications": ["HubSpot Content Marketing Certification", "Google Digital Marketing Certificate"]
         }
     
+    # BA Psychology
+    elif "ba" in degree_lower and "psychology" in degree_lower:
+        return {
+            "transferable_skills": ["communication", "empathy", "research", "analytical thinking", "human behavior", "active listening"],
+            "recommended_roles": ["hr generalist", "content writer", "customer support executive", "ui ux designer"],
+            "roadmap": [
+                "💼 Learn HR basics and recruitment processes",
+                "✍️ Take content writing courses",
+                "🎨 Learn design tools for UX roles",
+                "🎯 Apply for HR or content roles"
+            ],
+            "certifications": ["HRCI Associate Professional in HR", "Google UX Design Certificate"]
+        }
+    
+    # BA Economics
     elif "ba" in degree_lower and "economics" in degree_lower:
         return {
-            "transferable_skills": ["econometrics", "statistics", "data analysis", "excel", "critical thinking", "research", "mathematical modeling", "quantitative skills", "forecasting"],
-            "recommended_roles": ["data analyst", "business analyst", "financial analyst", "digital marketing analyst", "product manager", "data scientist", "market researcher"],
+            "transferable_skills": ["analytical thinking", "data interpretation", "research", "quantitative skills", "critical thinking"],
+            "recommended_roles": ["data analyst", "business analyst", "financial analyst", "investment banker"],
             "roadmap": [
-                "Your econometrics background is powerful for data analyst roles",
-                "Learn Python and SQL for advanced data analysis",
-                "Master data visualization tools (Tableau, Power BI)",
-                "Study machine learning basics for predictive modeling",
-                "Build a portfolio of data analysis projects on Kaggle"
+                "📊 Master Excel and SQL - 1 month",
+                "🐍 Learn Python basics - 1 month",
+                "📈 Learn data visualization tools - 3 weeks",
+                "📚 Study business and data analysis concepts",
+                "🎯 Apply for analyst roles"
             ],
-            "certifications": ["Google Data Analytics Certificate", "CFA Investment Foundations", "IBM Data Science Certificate", "Microsoft Power BI Certification"]
+            "certifications": ["Google Data Analytics Certificate", "CFA Investment Foundations", "Microsoft Excel Certification"]
         }
     
-    elif "ba" in degree_lower and "english" in degree_lower:
+    # B.Com
+    elif "b.com" in degree_lower or "bcom" in degree_lower:
         return {
-            "transferable_skills": ["writing", "editing", "research", "critical analysis", "storytelling", "grammar", "communication", "attention to detail", "creativity"],
-            "recommended_roles": ["content writer", "copywriter", "journalist", "editor", "technical writer", "social media manager", "public relations specialist"],
+            "transferable_skills": ["accounting", "finance", "excel", "attention to detail", "communication", "business acumen"],
+            "recommended_roles": ["business analyst", "accountant", "financial analyst", "digital marketing analyst", "sales executive"],
             "roadmap": [
-                "Your writing skills are your superpower: Take content writing courses",
-                "Learn SEO and content strategy for digital content roles",
-                "Master WordPress and CMS platforms",
-                "Build a portfolio of writing samples (blog, articles, social media)",
-                "Freelance on platforms like Upwork to gain experience"
+                "📊 Master Excel (pivot tables, VLOOKUP) - 3 weeks",
+                "📚 Learn accounting software (Tally/QuickBooks) - 3 weeks",
+                "💼 Study business communication and presentation skills",
+                "📈 Learn basic data analysis and SQL",
+                "🎯 Apply for B.Com graduate roles"
             ],
-            "certifications": ["HubSpot Content Marketing Certification", "SEO Fundamentals (Moz)", "Google Digital Marketing Certificate", "Technical Writing Certification"]
+            "certifications": ["Tally Certification", "QuickBooks Certification", "Google Data Analytics Certificate"]
         }
     
-    elif "ba" in degree_lower or "bachelor of arts" in degree_lower:
+    # BBA
+    elif "bba" in degree_lower:
         return {
-            "transferable_skills": ["communication", "writing", "research", "critical thinking", "creativity", "analytical skills", "presentation", "empathy", "storytelling", "adaptability"],
-            "recommended_roles": ["content writer", "copywriter", "social media manager", "digital marketer", "journalist", "public relations specialist", "event coordinator", "ui ux designer", "graphic designer", "hr generalist"],
+            "transferable_skills": ["management", "marketing", "communication", "leadership", "teamwork", "presentation", "business strategy"],
+            "recommended_roles": ["business analyst", "marketing coordinator", "hr generalist", "sales executive", "project coordinator", "product manager"],
             "roadmap": [
-                "Leverage your communication skills: Take content writing and copywriting courses",
-                "Learn digital marketing: SEO, Google Analytics, social media marketing",
-                "Use your creativity: Learn design tools (Figma, Canva, Adobe Suite)",
-                "Build analytical skills: Learn Excel and data analysis basics",
-                "Create a portfolio: Start a blog, run social media campaigns, create design projects",
-                "Get certified in digital marketing or content strategy"
+                "💼 Strengthen your business and management knowledge",
+                "📊 Learn Excel and data analysis basics",
+                "📢 Learn digital marketing fundamentals",
+                "🗣️ Improve communication and presentation skills",
+                "📝 Get certifications in your interested domain",
+                "🎯 Apply for management trainee and coordinator roles"
             ],
-            "certifications": ["Google Digital Marketing Certificate", "Google UX Design Certificate", "HubSpot Content Marketing Certification", "Meta Social Media Marketing"]
+            "certifications": ["Google Project Management Certificate", "HubSpot Academy Certifications", "Digital Marketing Certificate"]
         }
     
-    # ========== FINE ARTS ==========
+    # B.Sc / BCA / B.Tech
+    elif "b.sc" in degree_lower or "bca" in degree_lower or "b.tech" in degree_lower:
+        return {
+            "transferable_skills": ["programming", "problem solving", "analytical thinking", "data structures", "algorithms", "logical reasoning"],
+            "recommended_roles": ["software engineer", "web developer", "data analyst", "python developer", "data scientist", "ml engineer", "cloud engineer"],
+            "roadmap": [
+                "💻 Master one programming language (Python/Java) - 2 months",
+                "📚 Learn Data Structures and Algorithms - 2 months",
+                "🛠️ Build 2-3 projects for portfolio",
+                "📝 Learn Git and GitHub",
+                "🎯 Prepare for technical interviews",
+                "📄 Apply for entry-level IT roles"
+            ],
+            "certifications": ["AWS Cloud Practitioner", "Google Data Analytics Certificate", "Meta Backend Developer Certificate"]
+        }
+    
+    # BFA / Fine Arts
     elif "bfa" in degree_lower or "fine arts" in degree_lower:
         return {
-            "transferable_skills": ["visual design", "creativity", "color theory", "typography", "illustration", "composition", "design thinking", "attention to detail", "art direction"],
-            "recommended_roles": ["graphic designer", "ui ux designer", "illustrator", "motion graphics designer", "web designer", "video editor", "photographer", "art director"],
+            "transferable_skills": ["creativity", "visual design", "color theory", "attention to detail", "artistic skills", "composition"],
+            "recommended_roles": ["graphic designer", "ui ux designer", "web designer", "motion graphics designer", "illustrator", "video editor"],
             "roadmap": [
-                "Your design foundation is incredible: Master digital design tools",
-                "Learn Figma and Adobe Creative Suite (Photoshop, Illustrator, After Effects)",
-                "Study UI/UX design principles and user research",
-                "Learn basic HTML/CSS for web design roles",
-                "Build a strong portfolio on Behance or Dribbble",
-                "Freelance on design platforms to gain clients"
+                "🎨 Master Photoshop, Illustrator, and Figma - 2 months",
+                "🖌️ Learn color theory and typography - 2 weeks",
+                "📱 Learn social media content creation - 2 weeks",
+                "📁 Build Behance portfolio with 10+ projects - 1 month",
+                "💼 Start freelancing on Fiverr/Upwork",
+                "🎯 Apply for junior designer roles"
             ],
-            "certifications": ["Google UX Design Certificate", "Adobe Certified Professional", "Figma UI/UX Design Specialization", "Motion Graphics with After Effects"]
+            "certifications": ["Google UX Design Certificate", "Adobe Certified Professional", "Figma Certification"]
         }
     
-    # ========== JOURNALISM ==========
-    elif "journalism" in degree_lower or "mass communication" in degree_lower or "bjmc" in degree_lower:
+    # BJMC / Journalism
+    elif "bjmc" in degree_lower or "journalism" in degree_lower:
         return {
-            "transferable_skills": ["writing", "editing", "research", "storytelling", "interviewing", "media production", "social media", "content creation", "critical analysis", "deadline management"],
-            "recommended_roles": ["content writer", "digital marketer", "social media manager", "copywriter", "public relations specialist", "journalist", "video editor", "news anchor"],
+            "transferable_skills": ["writing", "editing", "research", "storytelling", "interviewing", "media production", "communication"],
+            "recommended_roles": ["content writer", "social media manager", "journalist", "public relations specialist", "video editor"],
             "roadmap": [
-                "Your writing and storytelling skills are your superpower",
-                "Learn SEO and content strategy for digital media roles",
-                "Master social media marketing and analytics tools",
-                "Learn Google Analytics and digital marketing platforms",
-                "Study video content creation and editing for multimedia roles",
-                "Build a portfolio of published work (articles, videos, social campaigns)"
+                "✍️ Take content writing and copywriting courses",
+                "📢 Learn digital marketing basics (SEO, social media)",
+                "🎬 Learn video editing (Premiere Pro)",
+                "📝 Build portfolio of published work",
+                "🎯 Apply for media and content roles"
             ],
-            "certifications": ["Google Digital Marketing Certificate", "HubSpot Content Marketing Certification", "SEO Fundamentals (Moz)", "Meta Certified Digital Marketing Associate"]
+            "certifications": ["Google Digital Marketing Certificate", "HubSpot Content Marketing Certification", "SEO Fundamentals"]
         }
     
-    # ========== COMMERCE ==========
-    elif "b.com" in degree_lower or "bcom" in degree_lower or "commerce" in degree_lower:
-        return {
-            "transferable_skills": ["accounting", "finance", "excel", "business acumen", "data analysis", "problem solving", "attention to detail", "statistics", "financial reporting", "taxation"],
-            "recommended_roles": ["business analyst", "financial analyst", "accountant", "investment banker", "digital marketing analyst", "marketing coordinator", "sales executive", "project coordinator", "operations manager"],
-            "roadmap": [
-                "Excel is your superpower: Master pivot tables, VLOOKUP, and Power Query",
-                "Learn SQL for data extraction and database management",
-                "Study data visualization (Power BI, Tableau) for reporting roles",
-                "Learn business analysis and requirements gathering techniques",
-                "Get certified in project management or business analytics",
-                "Build a portfolio of financial models and business case studies"
-            ],
-            "certifications": ["Google Data Analytics Certificate", "IIBA ECBA", "CAPM", "Microsoft Power BI Certification", "CFA Investment Foundations"]
-        }
-    
-    # ========== BBA ==========
-    elif "bba" in degree_lower or "business administration" in degree_lower:
-        return {
-            "transferable_skills": ["management", "marketing", "finance", "hr", "communication", "leadership", "teamwork", "business strategy", "presentation", "client management"],
-            "recommended_roles": ["business analyst", "product manager", "digital marketer", "hr generalist", "sales executive", "project coordinator", "marketing coordinator", "operations manager", "management consultant"],
-            "roadmap": [
-                "Your business core is your strength: Add data analysis skills",
-                "Learn Excel, SQL, and data visualization tools",
-                "Study product management and Agile methodologies",
-                "Learn digital marketing analytics and campaign management",
-                "Get certified in project management (CAPM, Scrum Master)",
-                "Build a portfolio of business cases and marketing campaigns"
-            ],
-            "certifications": ["Google Project Management Certificate", "Product School PMC", "HubSpot Academy Certifications", "Google Digital Marketing Certificate", "Scrum Master Certification"]
-        }
-    
-    # ========== SCIENCE ==========
-    elif "b.sc" in degree_lower and "computer science" in degree_lower:
-        return {
-            "transferable_skills": ["programming", "algorithms", "data structures", "problem solving", "logical thinking", "mathematics", "database management", "software development"],
-            "recommended_roles": ["software engineer", "python developer", "web developer", "data analyst", "database administrator", "full stack developer", "backend developer"],
-            "roadmap": [
-                "Your CS foundation is solid: Deepen your programming skills",
-                "Master a backend framework (Django, Spring Boot, Node.js)",
-                "Learn frontend technologies (React, Vue, Angular)",
-                "Study cloud platforms and deployment (AWS, Docker)",
-                "Build a portfolio of full-stack applications",
-                "Contribute to open source projects"
-            ],
-            "certifications": ["AWS Certified Developer", "Meta Backend Developer Certificate", "Google IT Automation with Python", "Docker Certification"]
-        }
-    
-    elif "b.sc" in degree_lower and "mathematics" in degree_lower:
-        return {
-            "transferable_skills": ["mathematics", "statistics", "logical reasoning", "problem solving", "analytical thinking", "quantitative analysis", "data modeling"],
-            "recommended_roles": ["data analyst", "data scientist", "business analyst", "financial analyst", "quantitative analyst", "machine learning engineer", "actuary"],
-            "roadmap": [
-                "Your math background is gold for data science roles",
-                "Learn Python and data science libraries (Pandas, NumPy, Scikit-learn)",
-                "Study machine learning algorithms and statistical modeling",
-                "Learn SQL for database management",
-                "Build a portfolio of data science projects on Kaggle"
-            ],
-            "certifications": ["IBM Data Science Certificate", "Google Advanced Data Analytics", "TensorFlow Developer Certificate", "SAS Certification"]
-        }
-    
-    elif "b.sc" in degree_lower and "statistics" in degree_lower:
-        return {
-            "transferable_skills": ["statistics", "probability", "data analysis", "mathematics", "research methodology", "analytical thinking", "quantitative analysis", "hypothesis testing"],
-            "recommended_roles": ["data analyst", "data scientist", "business analyst", "statistician", "market researcher", "risk analyst", "quantitative analyst"],
-            "roadmap": [
-                "Your statistics background is perfect for data roles",
-                "Learn Python, R, and statistical analysis libraries",
-                "Master SQL for data extraction",
-                "Learn data visualization (Tableau, Power BI, Matplotlib)",
-                "Study machine learning algorithms",
-                "Build a portfolio of statistical analysis projects"
-            ],
-            "certifications": ["Google Data Analytics Certificate", "IBM Data Science Certificate", "SAS Statistical Business Analyst", "Microsoft Power BI Certification"]
-        }
-    
-    elif "b.sc" in degree_lower or "bsc" in degree_lower:
-        return {
-            "transferable_skills": ["mathematics", "statistics", "analytical thinking", "research methodology", "problem solving", "data analysis", "logical reasoning", "scientific method"],
-            "recommended_roles": ["data analyst", "data scientist", "business analyst", "python developer", "market researcher", "research analyst"],
-            "roadmap": [
-                "Your analytical skills are valuable for data roles",
-                "Learn Python and data science libraries (Pandas, NumPy)",
-                "Master SQL for database querying",
-                "Learn data visualization tools (Tableau, Power BI)",
-                "Study statistics and machine learning basics",
-                "Build a portfolio of data analysis projects"
-            ],
-            "certifications": ["Google Data Analytics Certificate", "IBM Data Science Certificate", "Python for Data Science (IBM)"]
-        }
-    
-    # ========== BCA ==========
-    elif "bca" in degree_lower or "computer applications" in degree_lower:
-        return {
-            "transferable_skills": ["programming", "database management", "web development", "software engineering", "algorithms", "data structures", "problem solving", "logical thinking", "it fundamentals"],
-            "recommended_roles": ["python developer", "web developer", "frontend developer", "android developer", "ios developer", "devops engineer", "data analyst", "software engineer", "database administrator", "full stack developer"],
-            "roadmap": [
-                "Your coding foundation is solid: Master backend frameworks (Django, Spring Boot)",
-                "Add modern frontend skills: React, Vue, or Angular",
-                "Learn mobile development (Kotlin for Android, Swift for iOS)",
-                "Study cloud platforms and DevOps (AWS, Docker, Kubernetes)",
-                "Learn data science libraries for data analyst roles",
-                "Build a portfolio of full-stack applications and contribute to open source"
-            ],
-            "certifications": ["Meta Backend Developer Certificate", "AWS Certified Developer", "Google IT Automation with Python", "IBM Full Stack Developer", "Docker Certification"]
-        }
-    
-    # ========== ENGINEERING ==========
-    elif "b.tech" in degree_lower or "be" in degree_lower and "computer" in degree_lower:
-        return {
-            "transferable_skills": ["engineering mathematics", "programming", "data structures", "algorithms", "system design", "problem solving", "project management", "technical documentation", "software architecture"],
-            "recommended_roles": ["software engineer", "data scientist", "machine learning engineer", "cloud engineer", "devops engineer", "ai engineer", "backend developer", "full stack developer", "cybersecurity analyst", "data engineer", "site reliability engineer"],
-            "roadmap": [
-                "Your engineering mindset is your biggest asset for tech roles",
-                "Master system design and software architecture",
-                "Deep dive into AI/ML using your strong math foundation",
-                "Learn cloud platforms (AWS, Azure, GCP) and DevOps tools",
-                "Study data engineering and big data technologies",
-                "Build scalable systems and contribute to open source",
-                "LeetCode and system design interview prep for top companies"
-            ],
-            "certifications": ["AWS Solutions Architect", "Google Professional ML Engineer", "DeepLearning.AI TensorFlow Developer", "Kubernetes Certification", "System Design Interview Prep"]
-        }
-    
-    elif "b.tech" in degree_lower or "be" in degree_lower or "engineering" in degree_lower:
-        return {
-            "transferable_skills": ["engineering mathematics", "programming", "data structures", "algorithms", "system design", "problem solving", "project management", "technical documentation", "analytical thinking"],
-            "recommended_roles": ["software engineer", "data scientist", "machine learning engineer", "cloud engineer", "devops engineer", "backend developer", "full stack developer", "embedded engineer", "cybersecurity analyst"],
-            "roadmap": [
-                "Your engineering mindset is your biggest asset",
-                "Master data structures and algorithms for software roles",
-                "Deep dive into AI/ML using your math foundation",
-                "Learn cloud platforms (AWS, Azure, GCP)",
-                "Study DevOps and infrastructure as code",
-                "Build a portfolio of projects and contribute to open source",
-                "Practice LeetCode for technical interviews"
-            ],
-            "certifications": ["AWS Solutions Architect", "Google Professional ML Engineer", "DeepLearning.AI TensorFlow Developer", "Kubernetes Certification", "System Design Interview Prep"]
-        }
-    
-    # ========== DEFAULT ==========
+    # Default
     else:
         return {
-            "transferable_skills": ["communication", "problem solving", "analytical thinking", "teamwork", "time management", "adaptability", "critical thinking", "organization", "leadership"],
-            "recommended_roles": ["business analyst", "digital marketer", "content writer", "data analyst", "project coordinator", "sales executive", "hr generalist", "marketing coordinator", "customer success"],
+            "transferable_skills": ["communication", "problem solving", "teamwork", "time management", "adaptability", "willingness to learn"],
+            "recommended_roles": ["content writer", "customer support executive", "data entry operator", "project coordinator", "sales executive", "digital marketer"],
             "roadmap": [
-                "Identify your core strengths and skills from your background",
-                "Add digital skills relevant to your interests (Excel, data analysis, design, marketing)",
-                "Take online courses to bridge skill gaps (Coursera, Udemy, LinkedIn Learning)",
-                "Build a portfolio of practical projects in your chosen field",
-                "Network with professionals in your target industry on LinkedIn",
-                "Start with internships or entry-level positions to gain hands-on experience",
-                "Get certified in your chosen career path"
+                "📝 Identify your core strengths and interests",
+                "💻 Take online courses to build digital skills",
+                "📊 Learn basic computer skills (MS Office, Excel)",
+                "🗣️ Improve communication and interview skills",
+                "📁 Build a portfolio of your work/projects",
+                "🤝 Network on LinkedIn and apply for internships",
+                "🎯 Start with entry-level positions to gain experience"
             ],
-            "certifications": ["Google Career Certificates", "HubSpot Academy Courses", "LinkedIn Learning Paths", "Coursera Professional Certificates", "Microsoft Learn"]
+            "certifications": ["Google Career Certificates", "HubSpot Academy Courses", "LinkedIn Learning Paths", "MS Office Certification"]
         }
+
+
+# ============================================
+# HELPER FUNCTIONS
+# ============================================
+
+def get_learning_resource(skill_name):
+    """Get learning resource URL for a specific skill"""
+    skill_lower = skill_name.lower().strip()
+    if skill_lower in learning_resources_db:
+        return learning_resources_db[skill_lower]
+    return f"https://www.youtube.com/results?search_query={skill_lower.replace(' ', '+')}+tutorial"
+
+def get_all_job_roles_list():
+    """Return list of all job roles"""
+    return list(job_skills.keys())
+
+def get_job_with_resources(job_role):
+    """Get job role with learning resources"""
+    return job_skills.get(job_role)
+
+def get_skill_prerequisites(skill_name):
+    """Get prerequisites for a skill"""
+    return skill_prerequisites.get(skill_name.lower(), [])
+
+def get_project_ideas(skill_name):
+    """Get project ideas for a skill"""
+    return project_ideas.get(skill_name.lower(), [])
+
+def get_certification_path(job_role):
+    """Get certification recommendations for a job role"""
+    return certification_paths.get(job_role.lower(), [])
+
+def get_weekly_plan(job_role, week_number=1):
+    """Get weekly action plan for a job role"""
+    role_plans = weekly_action_plans.get(job_role.lower(), {})
+    return role_plans.get(f"week{week_number}", None)

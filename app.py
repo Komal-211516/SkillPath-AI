@@ -15,7 +15,8 @@ import json
 import os
 from datetime import datetime
 from database import init_db, seed_job_roles, get_job_from_db, save_result, get_all_jobs, get_jobs_by_category, save_user_profile
-from skills_data import job_skills, get_skill_recommendations_by_degree
+from skills_data import job_skills, get_skill_recommendations_by_degree, learning_resources_db, get_learning_resource
+from skills_data import get_certification_path, get_weekly_plan, get_skill_prerequisites, get_project_ideas
 
 # Download required NLTK data
 try:
@@ -39,16 +40,129 @@ lemmatizer = WordNetLemmatizer()
 stop_words = set(stopwords.words('english'))
 
 # ============================================
+# COMPLETE SKILL DATABASE FOR EXTRACTION
+# ============================================
+
+ALL_SKILLS_FOR_EXTRACTION = [
+    # Content Writing Skills (matches your resume exactly)
+    "writing", "copywriting", "editing", "proofreading", "research",
+    "storytelling", "grammar", "seo", "blogging", "content strategy",
+    "wordpress", "social media", "communication", "creative writing",
+    "fact checking", "competitor analysis", "blog writing", "topic research",
+    "fact-checking", "content calendar", "ad copy", "email copy",
+    
+    # Copywriting Skills
+    "persuasion", "advertising", "brand voice", "email marketing", "marketing",
+    "landing pages", "headlines",
+    
+    # Social Media Skills
+    "content creation", "community management", "engagement", "trends",
+    "instagram", "facebook", "linkedin", "twitter", "youtube",
+    "google analytics", "hootsuite",
+    
+    # Journalism Skills
+    "interviewing", "news gathering", "ethics", "investigation",
+    "deadline management", "indesign",
+    
+    # PR Skills
+    "media relations", "crisis management", "networking", "press releases",
+    
+    # Event Skills
+    "event planning", "logistics", "organization", "vendor management",
+    "budgeting", "trello",
+    
+    # Design Skills
+    "photoshop", "illustrator", "figma", "canva", "typography",
+    "color theory", "branding", "layout design", "visual communication",
+    "logo design", "adobe xd", "ui design", "ux design", "wireframing",
+    "prototyping", "procreate", "after effects", "premiere pro",
+    "animation", "motion graphics", "keyframing", "cinema 4d",
+    
+    # Video/Photo Skills
+    "video editing", "audio editing", "color grading", "compression",
+    "photography", "lightroom", "composition", "lighting", "retouching",
+    
+    # Web Development
+    "html", "css", "javascript", "react", "nodejs", "bootstrap",
+    "tailwind", "responsive design", "git", "github", "rest api",
+    "mongodb", "postgresql", "mysql", "sql", "flask", "django",
+    "express", "spring boot", "jwt",
+    
+    # Programming Languages
+    "python", "java", "c++", "c", "swift", "kotlin", "typescript",
+    "ruby", "go", "rust", "php", "c#",
+    
+    # Data Science
+    "pandas", "numpy", "matplotlib", "seaborn", "scikit-learn",
+    "tensorflow", "keras", "pytorch", "transformers", "nltk",
+    "machine learning", "deep learning", "statistics", "data visualization",
+    "eda", "feature engineering", "tableau", "power bi", "excel", "sqlite",
+    "openai", "langchain", "llm", "prompt design", "streamlit",
+    
+    # Cloud & DevOps
+    "aws", "ec2", "s3", "lambda", "rds", "vpc", "iam", "cloudwatch",
+    "azure", "docker", "kubernetes", "jenkins", "github actions",
+    "terraform", "linux", "bash", "ci/cd", "jenkins pipeline", "aws emr",
+    
+    # Cybersecurity
+    "network security", "firewalls", "encryption", "cryptography",
+    "wireshark", "nmap", "incident response", "risk management",
+    "security policies",
+    
+    # Blockchain
+    "solidity", "ethereum", "smart contracts", "web3.js", "truffle",
+    "remix", "metamask",
+    
+    # AR/VR
+    "unity", "blender", "arcore", "oculus sdk", "ar", "vr", "3d modeling",
+    
+    # Embedded
+    "arduino", "raspberry pi", "stm32", "iot", "firmware development",
+    "mqtt", "microcontrollers",
+    
+    # Mobile Development
+    "android studio", "xml", "retrofit", "material design",
+    "xcode", "uikit", "auto layout", "urlsession", "mvvm", "core data",
+    
+    # Business Skills
+    "accounting", "finance", "tally", "quickbooks", "gst", "taxation",
+    "financial statements", "valuation", "mergers & acquisitions",
+    "capital markets", "financial modeling", "requirements gathering",
+    "documentation", "jira", "ms project",
+    
+    # HR Skills
+    "recruitment", "onboarding", "employee relations", "hr policies",
+    "conflict resolution", "hrms",
+    
+    # Product Management
+    "product strategy", "user research", "prioritization", "user stories",
+    "prd writing", "scrum", "notion", "agile",
+    
+    # Operations
+    "operations", "process improvement", "quality control", "erp",
+    "supply chain", "inventory management",
+    
+    # Big Data
+    "spark", "pyspark", "hadoop", "hdfs", "etl",
+    
+    # Soft Skills
+    "teamwork", "problem solving", "time management", "presentation",
+    "negotiation", "leadership", "creativity", "attention to detail",
+    "adaptability", "critical thinking", "organization", "patience",
+    "empathy", "persuasion", "confidence",
+    
+    # Tools
+    "ms word", "powerpoint", "google docs", "google sheets", "mailchimp",
+    "semrush", "postman", "vscode", "jupyter", "colab", "obs studio",
+    "audition", "davinci resolve", "final cut pro", "behance",
+    "grammarly", "canva", "notion", "slack", "zoom",
+]
+
+# ============================================
 # 1. TEXT PREPROCESSING WITH NLP
 # ============================================
 
 def preprocess_text_nlp(text):
-    """
-    Advanced text preprocessing using NLP techniques
-    - Tokenization
-    - Stopword removal
-    - Lemmatization
-    """
     if not text:
         return ""
     
@@ -69,13 +183,10 @@ def preprocess_text_nlp(text):
 # ============================================
 
 class ResumeMatcher:
-    """ML-based resume matching using TF-IDF and Cosine Similarity"""
-    
     def __init__(self):
         self.tfidf_vectorizer = TfidfVectorizer(max_features=1000, ngram_range=(1, 2))
     
     def calculate_similarity(self, resume_text, job_description):
-        """Calculate cosine similarity between resume and job requirements"""
         if not resume_text or not job_description:
             return 0.0
         
@@ -90,7 +201,6 @@ class ResumeMatcher:
             return 0.0
     
     def semantic_skill_matching(self, resume_skills, required_skills):
-        """Semantic matching using string similarity"""
         matched = []
         for req_skill in required_skills:
             for res_skill in resume_skills:
@@ -106,15 +216,12 @@ resume_matcher = ResumeMatcher()
 # ============================================
 
 class DataProcessor:
-    """Handle all data processing using Pandas"""
-    
     def __init__(self):
         self.skills_df = None
         self.jobs_df = None
         self.load_data()
     
     def load_data(self):
-        """Load job and skill data into Pandas DataFrames"""
         all_skills = []
         for role, data in job_skills.items():
             for skill in data['required_skills']:
@@ -137,10 +244,13 @@ class DataProcessor:
         self.jobs_df = pd.DataFrame(jobs_data)
     
     def _categorize_skill(self, skill):
-        """Categorize skills into types"""
-        tech_skills = ['python', 'sql', 'java', 'javascript', 'html', 'css']
+        design_skills = ['photoshop', 'illustrator', 'figma', 'canva', 'typography', 'color theory', 'branding', 'indesign']
+        tech_skills = ['python', 'sql', 'java', 'javascript', 'html', 'css', 'react', 'nodejs']
         ml_skills = ['machine learning', 'deep learning', 'tensorflow', 'keras']
-        if skill in tech_skills:
+        
+        if skill in design_skills:
+            return 'Design'
+        elif skill in tech_skills:
             return 'Technical'
         elif skill in ml_skills:
             return 'Machine Learning'
@@ -148,14 +258,13 @@ class DataProcessor:
             return 'General'
     
     def analyze_skill_gaps(self, resume_skills, job_role):
-        """Analyze skill gaps using Pandas operations"""
         if job_role not in job_skills:
             return None
         
         required_skills = job_skills[job_role]['required_skills']
         
-        resume_series = pd.Series(resume_skills)
-        required_series = pd.Series(required_skills)
+        resume_series = pd.Series([s.lower() for s in resume_skills])
+        required_series = pd.Series([s.lower() for s in required_skills])
         
         matched = resume_series[resume_series.isin(required_series)].tolist()
         missing = required_series[~required_series.isin(resume_series)].tolist()
@@ -168,7 +277,6 @@ class DataProcessor:
         }
     
     def get_job_statistics(self):
-        """Get job market statistics using Pandas"""
         if self.jobs_df is None:
             return {}
         
@@ -186,7 +294,6 @@ data_processor = DataProcessor()
 # ============================================
 
 def extract_text_from_pdf(pdf_file):
-    """Extract text from uploaded PDF resume"""
     try:
         pdf_reader = PyPDF2.PdfReader(pdf_file)
         text = ""
@@ -199,69 +306,55 @@ def extract_text_from_pdf(pdf_file):
         print(f"PDF extraction error: {e}")
         return ""
 
-def advanced_skill_extraction(text):
-    """Advanced skill extraction using NLP techniques"""
+def extract_skills_from_text(text):
+    """Extract skills from resume text - IMPROVED for Content Writer resume"""
     if not text:
         return []
     
     text_lower = text.lower()
+    found_skills = []
     
-    skill_categories = {
-        'programming_languages': ['python', 'java', 'javascript', 'c++', 'swift', 'kotlin', 'typescript'],
-        'web_technologies': ['html', 'css', 'react', 'angular', 'vue', 'nodejs', 'django', 'flask'],
-        'data_science': ['pandas', 'numpy', 'tensorflow', 'keras', 'scikit-learn', 'matplotlib'],
-        'databases': ['sql', 'mysql', 'postgresql', 'mongodb', 'oracle'],
-        'cloud_devops': ['aws', 'azure', 'docker', 'kubernetes', 'jenkins', 'terraform'],
-        'ml_ai': ['machine learning', 'deep learning', 'nlp', 'computer vision'],
-        'soft_skills': ['communication', 'leadership', 'teamwork', 'problem solving']
-    }
+    # Method 1: Direct word boundary matching
+    for skill in ALL_SKILLS_FOR_EXTRACTION:
+        pattern = r'\b' + re.escape(skill) + r'\b'
+        if re.search(pattern, text_lower):
+            found_skills.append(skill)
     
-    extracted_skills = []
+    # Method 2: Extract from SKILLS section
+    skills_section_match = re.search(r'skills:?(.*?)(?:\n\n|\n[A-Z]|$)', text_lower, re.DOTALL)
+    if skills_section_match:
+        skills_text = skills_section_match.group(1)
+        skill_items = re.split(r'[•·,\n•]+', skills_text)
+        for item in skill_items:
+            item = item.strip()
+            if 2 < len(item) < 40:
+                for skill in ALL_SKILLS_FOR_EXTRACTION:
+                    if skill in item or item in skill:
+                        if skill not in found_skills:
+                            found_skills.append(skill)
+                        break
     
-    for category, skills in skill_categories.items():
-        for skill in skills:
-            pattern = r'\b' + re.escape(skill) + r'\b'
-            if re.search(pattern, text_lower):
-                extracted_skills.append(skill)
-    
-    multi_word_skills = ['machine learning', 'deep learning', 'data science', 'big data']
-    for skill in multi_word_skills:
-        if skill in text_lower:
-            extracted_skills.append(skill)
-    
-    return list(set(extracted_skills))
-
-def extract_skills_from_text(text):
-    """Main skill extraction function using NLP"""
-    try:
-        skills = advanced_skill_extraction(text)
-        if not skills:
-            skills = basic_skill_extraction(text)
-        return skills
-    except Exception as e:
-        print(f"Skill extraction error: {e}")
-        return basic_skill_extraction(text)
-
-def basic_skill_extraction(text):
-    """Fallback basic skill extraction"""
-    basic_skills = [
-        "python", "sql", "excel", "tableau", "power bi", "statistics",
-        "pandas", "numpy", "machine learning", "deep learning", "tensorflow",
-        "html", "css", "javascript", "react", "nodejs", "git", "docker", "aws"
+    # Method 3: Look for specific keywords
+    content_keywords = [
+        "writing", "copywriting", "editing", "proofreading", "research",
+        "storytelling", "grammar", "seo", "blogging", "content strategy",
+        "wordpress", "social media", "communication", "creative writing",
+        "fact checking", "competitor analysis"
     ]
-    found = []
-    text_lower = text.lower()
-    for skill in basic_skills:
-        if skill in text_lower:
-            found.append(skill)
-    return found
+    
+    for keyword in content_keywords:
+        if keyword in text_lower:
+            if keyword not in found_skills:
+                found_skills.append(keyword)
+    
+    return list(set(found_skills))
 
 # ============================================
-# 5. ENHANCED MATCH CALCULATION WITH ML
+# 5. ENHANCED MATCH CALCULATION WITH ML - FIXED
 # ============================================
 
 def calculate_match(resume_skills, job_role, resume_text=""):
-    """Enhanced match calculation using ML similarity"""
+    """Enhanced match calculation using ML similarity with learning resources"""
     job_data = get_job_from_db(job_role)
     
     if not job_data:
@@ -269,20 +362,59 @@ def calculate_match(resume_skills, job_role, resume_text=""):
     
     required = job_data["required_skills"]
     roadmap = job_data["roadmap"]
-    learning_resources = job_data["learning_resources"]
+    job_learning_resources = job_data.get("learning_resources", {})
     
-    matched = [s for s in resume_skills if s in required]
-    missing = [s for s in required if s not in resume_skills]
+    print(f"\n=== SKILL MATCHING DEBUG ===")
+    print(f"Resume skills found: {resume_skills}")
+    print(f"Required skills for {job_role}: {required}")
+    
+    resume_skills_lower = [s.lower().strip() for s in resume_skills]
+    required_lower = [r.lower().strip() for r in required]
+    
+    matched = []
+    missing = []
+    
+    for req in required_lower:
+        found = False
+        for res in resume_skills_lower:
+            if req == res:
+                found = True
+                break
+            elif req in res or res in req:
+                found = True
+                break
+            elif req.replace(" ", "").replace("_", "") in res.replace(" ", "").replace("_", ""):
+                found = True
+                break
+        
+        if found:
+            original_skill = next((s for s in required if s.lower() == req), req)
+            matched.append(original_skill)
+        else:
+            missing.append(req)
+    
     basic_score = int((len(matched) / len(required)) * 100) if required else 0
+    print(f"Matched: {len(matched)}/{len(required)} = {basic_score}%")
+    print(f"Matched skills: {matched}")
+    print(f"Missing skills: {missing}")
     
     ml_similarity_score = 0
     if resume_text:
-        job_description = ' '.join(required) + ' ' + ' '.join(roadmap)
+        # FIX: Convert roadmap steps to strings properly (extract 'step' from each dict)
+        roadmap_text = ' '.join([step['step'] if isinstance(step, dict) else str(step) for step in roadmap])
+        job_description = ' '.join(required) + ' ' + roadmap_text
         ml_similarity_score = resume_matcher.calculate_similarity(resume_text, job_description)
     
-    semantic_matched = resume_matcher.semantic_skill_matching(resume_skills, required)
     final_score = int((basic_score * 0.6) + (ml_similarity_score * 0.4))
-    skill_gap_analysis = data_processor.analyze_skill_gaps(resume_skills, job_role)
+    
+    missing_with_links = []
+    for skill in missing:
+        link = job_learning_resources.get(skill)
+        if not link:
+            link = learning_resources_db.get(skill)
+        if not link:
+            link = get_learning_resource(skill)
+        missing_with_links.append({"skill": skill, "link": link})
     
     return {
         "score": final_score,
@@ -290,11 +422,12 @@ def calculate_match(resume_skills, job_role, resume_text=""):
         "ml_similarity_score": round(ml_similarity_score, 2),
         "matched_skills": matched,
         "missing_skills": missing,
-        "semantic_matched": semantic_matched,
+        "missing_with_links": missing_with_links,
+        "semantic_matched": resume_matcher.semantic_skill_matching(resume_skills, required),
         "roadmap": roadmap,
-        "learning_resources": learning_resources,
+        "learning_resources": job_learning_resources,
         "total_required": len(required),
-        "skill_gap_analysis": skill_gap_analysis,
+        "skill_gap_analysis": data_processor.analyze_skill_gaps(resume_skills, job_role),
         "technologies_used": {
             "nlp": True,
             "machine_learning": True,
@@ -360,6 +493,8 @@ def analyze():
             return jsonify({"error": "Could not read PDF. Please try another file."})
 
         resume_skills = extract_skills_from_text(resume_text)
+        print(f"\n=== EXTRACTED SKILLS ({len(resume_skills)}): {resume_skills} ===")
+        
         result = calculate_match(resume_skills, job_role, resume_text)
 
         if not result:
@@ -373,6 +508,50 @@ def analyze():
 
     except Exception as e:
         print(f"Error: {e}")
+        return jsonify({"error": str(e)}), 500
+
+# ============================================
+# 7. NEW API ENDPOINTS FOR ENHANCED FEATURES
+# ============================================
+
+@app.route("/api/skill-prerequisites", methods=["POST"])
+def api_skill_prerequisites():
+    """Get prerequisites for a skill"""
+    try:
+        data = request.get_json()
+        skill_name = data.get("skill", "")
+        prerequisites = get_skill_prerequisites(skill_name)
+        return jsonify({"skill": skill_name, "prerequisites": prerequisites})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route("/api/project-ideas", methods=["POST"])
+def api_project_ideas():
+    """Get project ideas for a skill"""
+    try:
+        data = request.get_json()
+        skill_name = data.get("skill", "")
+        projects = get_project_ideas(skill_name)
+        return jsonify({"skill": skill_name, "projects": projects})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route("/api/certifications/<job_role>")
+def api_certifications(job_role):
+    """Get certification paths for a job role"""
+    certifications = get_certification_path(job_role)
+    return jsonify({"job_role": job_role, "certifications": certifications})
+
+@app.route("/api/weekly-plan", methods=["POST"])
+def api_weekly_plan():
+    """Get weekly action plan"""
+    try:
+        data = request.get_json()
+        job_role = data.get("job_role", "")
+        week_number = data.get("week_number", 1)
+        plan = get_weekly_plan(job_role, week_number)
+        return jsonify({"job_role": job_role, "week": week_number, "plan": plan})
+    except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 @app.route("/api/technology-info")

@@ -379,32 +379,205 @@
         .tag-tech { background: #e8f0fe; color: #4361ee; border: 1px solid #b3d4ff; }
 
         .resource-link {
-            margin-left: 8px;
-            font-size: 0.7rem;
-            text-decoration: none;
-            background: var(--accent2);
+            display: inline-block;
+            background: #ff4d00;
             color: white;
-            padding: 2px 8px;
-            border-radius: 12px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-left: 8px;
         }
 
-        .step {
+        .resource-link:hover {
+            background: #00c896;
+            transform: scale(1.05);
+        }
+
+        .roadmap-container {
+            margin-top: 20px;
+        }
+
+        .roadmap-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .progress-container {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .progress-bar {
+            background: #e5e2dc;
+            border-radius: 20px;
+            height: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(135deg, #00c896, #00e5b8);
+            width: 0%;
+            height: 100%;
+            border-radius: 20px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-top: 5px;
+            display: inline-block;
+        }
+
+        .step-item {
             display: flex;
             align-items: flex-start;
             gap: 16px;
-            padding: 14px 0;
+            padding: 16px;
             border-bottom: 1px solid #f0ede8;
             transition: background 0.2s;
-            border-radius: 8px;
+            border-radius: 12px;
+            margin-bottom: 8px;
         }
 
-        .step:hover { background: #faf9f7; padding-left: 8px; }
-        .step-n {
+        .step-item:hover {
+            background: #faf9f7;
+        }
+
+        .step-number {
             font-family: 'Syne', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 800;
             color: var(--accent);
-            width: 30px;
+            background: #fff0ee;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .step-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .meta-badge {
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: #f0f0f5;
+            color: var(--muted);
+        }
+
+        .meta-badge.difficulty-easy {
+            background: #e8fdf5;
+            color: #00825e;
+        }
+
+        .meta-badge.difficulty-medium {
+            background: #fff8e8;
+            color: #f39c12;
+        }
+
+        .meta-badge.difficulty-advanced {
+            background: #fff0ee;
+            color: #ff4d00;
+        }
+
+        .step-checkbox {
+            flex-shrink: 0;
+        }
+
+        .step-checkbox input {
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            accent-color: var(--accent2);
+        }
+
+        .certification-card {
+            background: linear-gradient(135deg, #f8f6f2, #fff);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border: 1px solid #e5e2dc;
+        }
+
+        .certification-card h4 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .cert-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            margin-right: 8px;
+            margin-top: 5px;
+        }
+
+        .weekly-plan-card {
+            background: #f8f6f2;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .plan-day {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e2dc;
+        }
+
+        .plan-day:last-child {
+            border-bottom: none;
+        }
+
+        .day-name {
+            font-weight: 600;
+            width: 100px;
+        }
+
+        .day-task {
+            flex: 1;
+        }
+
+        .btn-small {
+            background: var(--accent3);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background 0.3s;
+        }
+
+        .btn-small:hover {
+            background: var(--accent);
         }
 
         .tech-stack {
@@ -454,7 +627,6 @@
             <label>🎯 Target Job Role</label>
             <select id="jobRole">
                 <option value="">Select a role...</option>
-                
                 <optgroup label="🎨 Arts & Creative">
                     <option value="content writer">✍️ Content Writer</option>
                     <option value="copywriter">📝 Copywriter</option>
@@ -470,7 +642,6 @@
                     <option value="motion graphics designer">🎞️ Motion Graphics Designer</option>
                     <option value="web designer">🌐 Web Designer</option>
                 </optgroup>
-
                 <optgroup label="💰 Commerce & Business">
                     <option value="business analyst">📊 Business Analyst</option>
                     <option value="financial analyst">💰 Financial Analyst</option>
@@ -484,7 +655,6 @@
                     <option value="operations manager">⚙️ Operations Manager</option>
                     <option value="product manager">🚀 Product Manager</option>
                 </optgroup>
-
                 <optgroup label="💻 Technology & Engineering">
                     <option value="data analyst">📊 Data Analyst</option>
                     <option value="data scientist">🔬 Data Scientist</option>
@@ -508,7 +678,6 @@
                     <option value="ar vr developer">🥽 AR/VR Developer</option>
                     <option value="embedded engineer">🔌 Embedded Engineer</option>
                 </optgroup>
-
                 <optgroup label="🔬 Healthcare & Science">
                     <option value="bioinformatics scientist">🧬 Bioinformatics Scientist</option>
                     <option value="clinical data analyst">🏥 Clinical Data Analyst</option>
@@ -564,7 +733,7 @@
         <button class="btn btn-primary" onclick="getDegreeRecommendations()">🎯 Get Career Recommendations →</button>
     </div>
 
-    <!-- Technologies Card - Simple Icons Only -->
+    <!-- Technologies Card -->
     <div class="card animate-fade-scale" style="animation-delay: 0.2s;">
         <div class="card-title">⚙️ Technologies</div>
         <div class="tech-stack">
@@ -608,8 +777,7 @@
                 <div id="missingSkills"></div>
             </div>
         </div>
-        <div class="roadmap-title">🗺️ Your Career Roadmap</div>
-        <div id="roadmapSteps"></div>
+        <div id="roadmapContainer"></div>
     </div>
 
     <!-- Degree Results Section -->
@@ -622,6 +790,9 @@
 
 <script>
 let selectedFile = null;
+let completedSteps = [];
+let totalSteps = 0;
+let currentJobRole = '';
 
 function handleFile(input) {
     if (input.files[0]) {
@@ -702,26 +873,278 @@ function showResults(data) {
     document.getElementById('scoreTitle').textContent = title;
     document.getElementById('scoreDesc').textContent = desc;
 
+    // Matched Skills
     document.getElementById('matchedSkills').innerHTML = data.matched_skills.length > 0
         ? data.matched_skills.map(s => `<span class="tag tag-have">✅ ${s}</span>`).join('')
         : '<span style="color:#aaa;">No matching skills found</span>';
 
-    if (data.missing_skills.length > 0) {
+    // Missing Skills with Learn buttons
+    if (data.missing_skills && data.missing_skills.length > 0) {
         let missingHtml = '';
-        for (let skill of data.missing_skills) {
-            const resource = data.learning_resources ? data.learning_resources[skill] : null;
-            missingHtml += `<span class="tag tag-need">📖 ${skill}${resource ? `<a href="${resource}" target="_blank" class="resource-link">Learn</a>` : ''}</span>`;
+        
+        for (let i = 0; i < data.missing_skills.length; i++) {
+            const skill = data.missing_skills[i];
+            
+            let learnLink = `https://www.youtube.com/results?search_query=${encodeURIComponent(skill)}+tutorial+for+beginners`;
+            
+            if (data.learning_resources && data.learning_resources[skill]) {
+                learnLink = data.learning_resources[skill];
+            } else if (data.missing_with_links && data.missing_with_links[i] && data.missing_with_links[i].link) {
+                learnLink = data.missing_with_links[i].link;
+            }
+            
+            missingHtml += `
+                <span class="tag tag-need" style="display: inline-flex; align-items: center; gap: 8px; margin: 5px;">
+                    📖 ${skill}
+                    <a href="${learnLink}" target="_blank" class="resource-link" 
+                       style="background: #ff4d00; color: white; padding: 5px 12px; border-radius: 20px; text-decoration: none; font-size: 0.7rem; font-weight: bold;">
+                        🎬 Learn
+                    </a>
+                </span>
+            `;
         }
+        
         document.getElementById('missingSkills').innerHTML = missingHtml;
     } else {
         document.getElementById('missingSkills').innerHTML = '<span style="color:#00825e;">🎉 You have all required skills!</span>';
     }
 
-    document.getElementById('roadmapSteps').innerHTML = data.roadmap
-        .map((step, i) => `<div class="step"><div class="step-n">${String(i+1).padStart(2,'0')}</div><div class="step-text">${step}</div></div>`).join('');
-
+    // ============================================
+    // ENHANCED ROADMAP - FIXED
+    // ============================================
+    
+    currentJobRole = document.getElementById('jobRole').value;
+    
+    let roadmapHtml = `
+        <div class="roadmap-container">
+            <div class="roadmap-header">
+                <h3>🗺️ Your Personalized Career Roadmap</h3>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="roadmapProgressFill" style="width: 0%"></div>
+                    </div>
+                    <span class="progress-text" id="roadmapProgressText">0% Complete</span>
+                </div>
+            </div>
+            <div id="roadmapStepsList"></div>
+        </div>
+    `;
+    
+    document.getElementById('roadmapContainer').innerHTML = roadmapHtml;
+    
+    // Build enhanced roadmap steps
+    let stepsHtml = '';
+    totalSteps = data.roadmap ? data.roadmap.length : 0;
+    
+    if (data.roadmap && data.roadmap.length > 0) {
+        for (let i = 0; i < data.roadmap.length; i++) {
+            const step = data.roadmap[i];
+            let stepText = '';
+            let timeEstimate = '';
+            let difficulty = '';
+            let difficultyClass = '';
+            let priority = '';
+            
+            // Check if step is an object (with step property) or just a string
+            if (typeof step === 'object' && step !== null) {
+                stepText = step.step || step;
+                timeEstimate = step.time ? `<span class="meta-badge">⏱️ ${step.time}</span>` : '';
+                difficulty = step.difficulty || '';
+                if (difficulty) {
+                    difficultyClass = `difficulty-${difficulty.toLowerCase()}`;
+                }
+                priority = step.priority ? `<span class="meta-badge">⭐ ${step.priority} Priority</span>` : '';
+            } else {
+                // If step is a simple string
+                stepText = step;
+                timeEstimate = '';
+                difficulty = '';
+                priority = '';
+            }
+            
+            stepsHtml += `
+                <div class="step-item" data-step-index="${i}">
+                    <div class="step-number">${String(i+1).padStart(2,'0')}</div>
+                    <div class="step-content">
+                        <div class="step-title">${escapeHtml(stepText)}</div>
+                        <div class="step-meta">
+                            ${timeEstimate}
+                            ${difficulty ? `<span class="meta-badge ${difficultyClass}">📊 ${difficulty}</span>` : ''}
+                            ${priority}
+                        </div>
+                    </div>
+                    <div class="step-checkbox">
+                        <input type="checkbox" onclick="toggleRoadmapStep(${i})">
+                    </div>
+                </div>
+            `;
+        }
+    }
+    
+    document.getElementById('roadmapStepsList').innerHTML = stepsHtml;
+    
+    // Load saved progress
+    loadSavedProgress(totalSteps);
+    
+    // Load certifications
+    loadCertifications(currentJobRole);
+    
+    // Load weekly plan
+    loadWeeklyPlan(currentJobRole, 1);
+    
     document.getElementById('results').style.display = 'block';
     document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+}
+
+function escapeHtml(text) {
+    if (!text) return '';
+    return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+async function loadCertifications(jobRole) {
+    try {
+        const response = await fetch(`/api/certifications/${encodeURIComponent(jobRole)}`);
+        const data = await response.json();
+        
+        if (data.certifications && data.certifications.length > 0) {
+            let certHtml = `
+                <div style="margin-top: 30px;">
+                    <h3>🎓 Recommended Certifications</h3>
+                </div>
+            `;
+            
+            for (const cert of data.certifications) {
+                certHtml += `
+                    <div class="certification-card">
+                        <h4>${escapeHtml(cert.name)}</h4>
+                        <div>
+                            <span class="cert-badge" style="background:#4361ee;color:white;">🏛️ ${escapeHtml(cert.provider)}</span>
+                            <span class="cert-badge" style="background:#00c896;color:white;">⏱️ ${escapeHtml(cert.duration)}</span>
+                            <span class="cert-badge" style="background:#ff4d00;color:white;">💰 ${escapeHtml(cert.cost)}</span>
+                            <span class="cert-badge" style="background:#8b5cf6;color:white;">📊 ${escapeHtml(cert.level)}</span>
+                        </div>
+                        <p style="margin-top: 10px; font-size: 0.85rem;"><strong>Skills Covered:</strong> ${cert.skills_covered.map(s => escapeHtml(s)).join(', ')}</p>
+                        <a href="${cert.link}" target="_blank" class="resource-link" style="display: inline-block; margin-top: 10px;">🔗 View Certificate →</a>
+                    </div>
+                `;
+            }
+            document.getElementById('roadmapContainer').insertAdjacentHTML('beforeend', certHtml);
+        }
+    } catch (err) {
+        console.error("Error loading certifications:", err);
+    }
+}
+
+async function loadWeeklyPlan(jobRole, weekNumber) {
+    try {
+        const response = await fetch('/api/weekly-plan', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ job_role: jobRole, week_number: weekNumber })
+        });
+        const data = await response.json();
+        
+        if (data.plan) {
+            let planHtml = `
+                <div class="weekly-plan-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                        <h3>📅 Weekly Action Plan - ${escapeHtml(data.plan.theme)}</h3>
+                        <div>
+                            <button class="btn-small" onclick="changeWeek(-1)">◀ Previous Week</button>
+                            <button class="btn-small" onclick="changeWeek(1)">Next Week ▶</button>
+                        </div>
+                    </div>
+                    <div id="weeklyPlanContent">
+            `;
+            
+            for (const day of data.plan.daily_tasks) {
+                planHtml += `
+                    <div class="plan-day">
+                        <span class="day-name">📌 ${escapeHtml(day.day)}</span>
+                        <span class="day-task">${escapeHtml(day.task)}</span>
+                        <span class="meta-badge">⏱️ ${day.hours} hours</span>
+                    </div>
+                `;
+            }
+            
+            if (data.plan.resources) {
+                planHtml += `<div style="margin-top: 15px;"><strong>📚 Resources:</strong> ${data.plan.resources.map(r => `<a href="${r}" target="_blank" style="color: var(--accent);">${r.split('/')[2]}</a>`).join(', ')}</div>`;
+            }
+            
+            planHtml += `</div></div>`;
+            document.getElementById('roadmapContainer').insertAdjacentHTML('beforeend', planHtml);
+        }
+    } catch (err) {
+        console.error("Error loading weekly plan:", err);
+    }
+}
+
+let currentWeek = 1;
+
+function changeWeek(delta) {
+    currentWeek += delta;
+    if (currentWeek < 1) currentWeek = 1;
+    loadWeeklyPlan(currentJobRole, currentWeek);
+}
+
+function toggleRoadmapStep(stepIndex) {
+    if (completedSteps.includes(stepIndex)) {
+        completedSteps = completedSteps.filter(i => i !== stepIndex);
+    } else {
+        completedSteps.push(stepIndex);
+    }
+    
+    const progress = (completedSteps.length / totalSteps) * 100;
+    const progressFill = document.getElementById('roadmapProgressFill');
+    const progressText = document.getElementById('roadmapProgressText');
+    
+    if (progressFill) {
+        progressFill.style.width = progress + '%';
+    }
+    if (progressText) {
+        progressText.textContent = Math.round(progress) + '% Complete';
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('skillpath_roadmap_progress', JSON.stringify({
+        jobRole: currentJobRole,
+        completedSteps: completedSteps,
+        date: new Date().toISOString()
+    }));
+}
+
+function loadSavedProgress(total) {
+    totalSteps = total;
+    const saved = localStorage.getItem('skillpath_roadmap_progress');
+    if (saved) {
+        const data = JSON.parse(saved);
+        if (data.jobRole === currentJobRole) {
+            completedSteps = data.completedSteps;
+            const progress = (completedSteps.length / totalSteps) * 100;
+            const progressFill = document.getElementById('roadmapProgressFill');
+            const progressText = document.getElementById('roadmapProgressText');
+            
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
+            if (progressText) {
+                progressText.textContent = Math.round(progress) + '% Complete';
+            }
+            
+            // Check the checkboxes
+            for (let i = 0; i < totalSteps; i++) {
+                const checkbox = document.querySelector(`.step-item[data-step-index="${i}"] .step-checkbox input`);
+                if (checkbox && completedSteps.includes(i)) {
+                    checkbox.checked = true;
+                }
+            }
+        }
+    }
 }
 
 async function getDegreeRecommendations() {
@@ -770,19 +1193,19 @@ function showDegreeResults(data) {
     container.innerHTML = `
         <div style="margin-bottom: 24px;">
             <h3 style="color: #4361ee; margin-bottom: 12px;">✨ Your Transferable Skills</h3>
-            <div>${data.transferable_skills.map(s => `<span class="tag tag-have">🎯 ${s}</span>`).join('')}</div>
+            <div>${data.transferable_skills.map(s => `<span class="tag tag-have">🎯 ${escapeHtml(s)}</span>`).join('')}</div>
         </div>
         <div style="margin-bottom: 24px;">
             <h3 style="color: #4361ee; margin-bottom: 12px;">💼 Best Fit Job Roles</h3>
-            <div>${data.recommended_roles.map(role => `<span class="tag" style="background:#e8f0fe;color:#4361ee;">${role}</span>`).join('')}</div>
+            <div>${data.recommended_roles.map(role => `<span class="tag" style="background:#e8f0fe;color:#4361ee;">${escapeHtml(role)}</span>`).join('')}</div>
         </div>
         <div style="margin-bottom: 24px;">
             <h3 style="color: #4361ee; margin-bottom: 12px;">📚 Personalized Learning Roadmap</h3>
-            ${data.roadmap.map((step, i) => `<div class="step"><div class="step-n">${String(i+1).padStart(2,'0')}</div><div class="step-text">${step}</div></div>`).join('')}
+            ${data.roadmap.map((step, i) => `<div class="step"><div class="step-n">${String(i+1).padStart(2,'0')}</div><div class="step-text">${escapeHtml(step)}</div></div>`).join('')}
         </div>
         <div>
             <h3 style="color: #4361ee; margin-bottom: 12px;">🎓 Recommended Certifications</h3>
-            ${data.certifications.map(cert => `<div style="padding: 10px 0; border-bottom: 1px solid #e5e2dc;">📜 ${cert}</div>`).join('')}
+            ${data.certifications.map(cert => `<div style="padding: 10px 0; border-bottom: 1px solid #e5e2dc;">📜 ${escapeHtml(cert)}</div>`).join('')}
         </div>
         <div style="margin-top: 24px; padding: 16px; background: #f8f6f2; border-radius: 12px;">
             <p style="font-size: 0.9rem;">💡 <strong>Pro Tip:</strong> Start with one role that excites you most, then use the resume analyzer above to check your readiness!</p>
